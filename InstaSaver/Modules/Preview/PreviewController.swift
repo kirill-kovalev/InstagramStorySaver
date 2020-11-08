@@ -34,7 +34,7 @@ class PreviewController: UICollectionViewController , UICollectionViewDelegateFl
 		
     }
 	
-	var content:[ISPreviewable] = [] {
+	var content:[ISMedia.Content] = [] {
 		didSet{
 			self.collectionView.reloadData()
 		}
@@ -53,9 +53,13 @@ class PreviewController: UICollectionViewController , UICollectionViewDelegateFl
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(PreviewCell.self)", for: indexPath)
 		let element = self.content[indexPath.item]
-		if let thumb = element.link,
-		   let cell = cell as? PreviewCell {
-			ISNetwork.shared.load(thumb).compactMap(UIImage.init).bind(to: cell.container.rx.image).disposed(by: bag)
+		if let cell = cell as? PreviewCell {
+			
+			URLSession.shared.rx
+				.data(request: URLRequest(url: element.thumb))
+				.map(UIImage.init)
+				.bind(to: cell.container.rx.image)
+				.disposed(by: bag)
 		}
         return cell
     }

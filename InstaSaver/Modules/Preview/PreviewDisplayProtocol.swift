@@ -9,10 +9,10 @@ import UIKit
 
 
 protocol PreviewDisplayDelegate:UIViewController{
-	func displayPreview(_ items:[ISPreviewable], from frame:CGRect, focus on:Int)
+	func displayPreview(_ items:[ISMedia.Content], from frame:CGRect, focus on:Int)
 }
 extension PreviewDisplayDelegate{
-	func displayPreview(_ items:[ISPreviewable],from frame:CGRect = .zero, focus on:Int = 0){
+	func displayPreview(_ items:[ISMedia.Content],from frame:CGRect = .zero, focus on:Int = 0){
 		let vc = PreviewController()
 		vc.content = items
 //		if let navigationController = self.navigationController {
