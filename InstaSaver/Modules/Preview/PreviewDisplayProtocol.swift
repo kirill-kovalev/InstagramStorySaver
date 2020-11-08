@@ -7,12 +7,11 @@
 
 import UIKit
 
-
-protocol PreviewDisplayDelegate:UIViewController{
-	func displayPreview(_ items:[ISMedia.Content], from frame:CGRect, focus on:Int)
+protocol PreviewDisplayDelegate: UIViewController {
+	func displayPreview(_ items: [ISMedia.Content], from frame: CGRect, focus on: Int)
 }
-extension PreviewDisplayDelegate{
-	func displayPreview(_ items:[ISMedia.Content],from frame:CGRect = .zero, focus on:Int = 0){
+extension PreviewDisplayDelegate {
+	func displayPreview(_ items: [ISMedia.Content], from frame: CGRect = .zero, focus on: Int = 0) {
 		let vc = PreviewController()
 		vc.content = items
 //		if let navigationController = self.navigationController {

@@ -9,10 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-
-
-class PreviewController: UICollectionViewController , UICollectionViewDelegateFlowLayout{
-	
+class PreviewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 	let bag = DisposeBag()
 	
 	override func loadView() {
@@ -31,22 +28,17 @@ class PreviewController: UICollectionViewController , UICollectionViewDelegateFl
 		(collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumLineSpacing = 0
 		collectionView.isPagingEnabled = true
 		
-		
     }
 	
-	var content:[ISMedia.Content] = [] {
-		didSet{
+	var content: [ISMedia.Content] = [] {
+		didSet {
 			self.collectionView.reloadData()
 		}
 	}
-	
-	
-
 
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {1}
-
 
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { content.count }
 
@@ -54,7 +46,6 @@ class PreviewController: UICollectionViewController , UICollectionViewDelegateFl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(PreviewCell.self)", for: indexPath)
 		let element = self.content[indexPath.item]
 		if let cell = cell as? PreviewCell {
-			
 			URLSession.shared.rx
 				.data(request: URLRequest(url: element.thumb))
 				.map(UIImage.init)
@@ -68,11 +59,10 @@ class PreviewController: UICollectionViewController , UICollectionViewDelegateFl
 		collectionView.frame.size
 	}
 
-
 }
 
 class PreviewCell: UICollectionViewCell {
-	let container:UIImageView = {
+	let container: UIImageView = {
 		let v = UIImageView(frame: .zero)
 		v.contentMode = .scaleAspectFit
 		return v
@@ -92,6 +82,5 @@ class PreviewCell: UICollectionViewCell {
 		super.layoutSubviews()
 		container.frame = contentView.frame
 	}
-	
 	
 }

@@ -535,7 +535,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#pod install\ncd $PROJECT_NAME\nswiftgen\n#if which swiftlint >/dev/null; then\n#  swiftlint\n#else\n#  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n#  exit 1\n#fi\ncd ../\n";
+			shellScript = "#pod install\ncd $PROJECT_NAME\nswiftgen\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\ncd ../\n";
 		};
 		73DF91FE7D1D88B020265FB5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

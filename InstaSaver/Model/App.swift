@@ -15,9 +15,8 @@ import SwiftagramCrypto
 
 let ISAPI = ISapi()
 class ISapi {
-	
-	private var secret:Secret? { secretObservable.value }
-	private var secretObservable = BehaviorRelay<Secret?>(value:nil)
+	private var secret: Secret? { secretObservable.value }
+	private var secretObservable = BehaviorRelay<Secret?>(value: nil)
 	
 	lazy var needsAuth = secretObservable.asObservable().map { $0 == nil }
 	
@@ -27,16 +26,16 @@ class ISapi {
 		}
 	}
 	
-	func auth(_ s:Secret){
+	func auth(_ s: Secret) {
 		KeychainStorage<Secret>().store(s)
 		secretObservable.accept(s)
 	}
-	func logout(){
+	func logout() {
 		KeychainStorage<Secret>().removeAll()
 		secretObservable.accept(nil)
 	}
 	
-	func searchUser(query:String)-> Observable<[ISUser]>{
+	func searchUser(query: String)-> Observable<[ISUser]> {
 		let publisher = PublishSubject<[ISUser]>()
 		publisher.on(.next([]))
 		guard let secret = secret else {
@@ -44,14 +43,12 @@ class ISapi {
 			return publisher.asObservable()
 		}
 		
-		
-		
 		Endpoint.User.all(matching: query)
 			.unlocking(with: secret)
 			.task(maxLength: .max, by: .default, onComplete: { _ in
 				publisher.on(.completed)
 			}, onChange: {
-				switch $0{
+				switch $0 {
 					case .success(let data):
 						if let users = data.users?.map({ $0.toISUser() }) {
 							publisher.on(.next(users))
@@ -63,7 +60,7 @@ class ISapi {
 		return publisher.asObservable()
 	}
 	
-	func getFriends() -> Observable<[ISUser]>{
+	func getFriends() -> Observable<[ISUser]> {
 		let publisher = PublishSubject<[ISUser]>()
 		
 		guard let secret = secret else { return publisher.asObservable()}
@@ -75,7 +72,7 @@ class ISapi {
 			.task(maxLength: .max, by: .default, onComplete: { _ in
 				publisher.on(.completed)
 			}, onChange: {
-				switch $0{
+				switch $0 {
 					case .success(let data):
 						if let users = data.users?.map({ $0.toISUser() }) {
 							publisher.on(.next(users))
@@ -87,7 +84,7 @@ class ISapi {
 		return publisher.asObservable()
 	}
 	
-	func getPosts(of user:ISUser)-> Observable<[ISMedia]>{
+	func getPosts(of user: ISUser)-> Observable<[ISMedia]> {
 		let publisher = PublishSubject<[ISMedia]>()
 		
 		guard let secret = secret else { return publisher.asObservable()}
@@ -101,7 +98,7 @@ class ISapi {
 			.task(maxLength: 3, by: .default, onComplete: { _ in
 				publisher.on(.completed)
 			}, onChange: {
-				switch $0{
+				switch $0 {
 					case .success(let data):
 						if let posts = data.media?.map({$0.toISMedia()}) {
 							allPosts.append(contentsOf: posts)
@@ -114,7 +111,7 @@ class ISapi {
 		return publisher.asObservable()
 	}
 	
-	func getStories(of user:ISUser)-> Observable<ISHilight>{
+	func getStories(of user: ISUser)-> Observable<ISHilight> {
 		let publisher = PublishSubject<ISHilight>()
 		
 		guard let secret = secret else { return publisher.asObservable()}
@@ -122,7 +119,7 @@ class ISapi {
 		Endpoint.Media.Stories.owned(by: user.identity)
 			.unlocking(with: secret)
 			.task(onComplete: {
-				switch $0{
+				switch $0 {
 					case .success(let data):
 						if let stories = data.item?.toISHilight() {
 							publisher.on(.next(stories))
@@ -135,7 +132,7 @@ class ISapi {
 	}
 	
 //	func getTray(){
-////		let publisher = PublishSubject<ISHilight>()
+//	let publisher = PublishSubject<ISHilight>()
 //		print("start")
 //		guard let secret = secret else { return }//publisher.asObservable()}
 //		print("secret")
@@ -152,7 +149,3 @@ class ISapi {
 //		}.resume()
 //	}
 }
-
-
-
-

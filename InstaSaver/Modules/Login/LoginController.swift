@@ -38,9 +38,10 @@ class LoginViewController: UIViewController {
 			self.webView = $0
 		}.authenticate {
 			switch $0 {
-			case .failure(let error): print(error.localizedDescription)
-			case .success(let secret):
-				ISAPI.auth(secret)
+				case .failure(let error): print(error.localizedDescription)
+					
+				case .success(let secret):
+					ISAPI.auth(secret)
 			}
 		}
 	}

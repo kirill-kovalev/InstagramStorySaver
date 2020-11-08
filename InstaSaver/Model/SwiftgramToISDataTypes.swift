@@ -50,7 +50,6 @@ extension Media {
 }
 extension User {
 	func toISUser() -> ISUser {
-		
 		return ISUser(username: self.username, fullName: self.name, avatar: self.avatar ?? self.thumbnail, identity: self.identifier)
 	}
 }

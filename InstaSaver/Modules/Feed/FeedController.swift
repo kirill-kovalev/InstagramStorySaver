@@ -10,45 +10,38 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-
-
 enum SectionTypes {
 	case stories([ISHilight])
 	case user(ISUser)
 }
-typealias FeedTableSection = SectionModel<String,SectionTypes>
-
+typealias FeedTableSection = SectionModel<String, SectionTypes>
 
 class FeedVC: ViewController<FeedView> {
-	
 	let viewModel = FeedViewModel()
 	
-	
-
-	
-	lazy var dataSource = RxTableViewSectionedReloadDataSource<FeedTableSection> {[weak self] (tableDataSource, tableView, indexPath, sectionItem) -> UITableViewCell in
+	lazy var dataSource = RxTableViewSectionedReloadDataSource<FeedTableSection> {[weak self] (_, tableView, indexPath, sectionItem) -> UITableViewCell in
 		guard let self = self else {return UITableViewCell()}
 		
 		switch sectionItem {
-			
 			case .stories(let hilights):
 				let cell = tableView.dequeueReusableCell(withIdentifier: "StoriesCell", for: indexPath) as! StoriesCell
 				
 				return cell
+
 			case .user(let user):
 				let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath) as! FriendsCell
 				
 				cell.username.text = user.fullName ?? user.username
 				cell.timestamp.text = " @\(user.username)"
 				
-				if let url = user.avatar{
+				if let url = user.avatar {
 					URLSession.shared.rx
 						.data(request: URLRequest(url: url))
 						.map(UIImage.init)
 						.observeOn(MainScheduler.instance)
 						.bind(to: cell.avatar.rx.image)
 						.disposed(by: self.bag)
-				}else {
+				} else {
 					print("avatar is nil")
 				}
 				
@@ -64,14 +57,13 @@ class FeedVC: ViewController<FeedView> {
 		self.rootView.contentTable.register(FriendsCell.self, forCellReuseIdentifier: "FriendsCell")
 		self.rootView.contentTable.delegate = self
 		
-		
 		bind(output: viewModel.transform(input: input))
 	}
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
 	}
-	var input:FeedViewModel.Input {
+	var input: FeedViewModel.Input {
 		FeedViewModel.Input(
 			logoutButtonTap: self.rootView.logoutButton.rx.tap,
 			searchQuery: self.rootView.searchView.RXtextfield.text,
@@ -83,13 +75,11 @@ class FeedVC: ViewController<FeedView> {
 	}
 	let bag = DisposeBag()
 	
-	private func bind(output:FeedViewModel.Output){
-		
+	private func bind(output: FeedViewModel.Output) {
 		output.users.map { (users) in
-			return [FeedTableSection(model: "users", items: users.map {SectionTypes.user($0)} )]
+			return [FeedTableSection(model: "users", items: users.map {SectionTypes.user($0)})]
 		}.bind(to: self.rootView.contentTable.rx.items(dataSource: dataSource))
 		.disposed(by: bag)
-		
 		
 		output.logoutTrigger.subscribe(onNext: { [weak self] in
 			self?.present(LoginViewController(), animated: true, completion: nil)
@@ -108,5 +98,3 @@ extension FeedVC: UITableViewDelegate {
 		return !(tableView.numberOfSections != 1 && indexPath.section == 0)
 	}
 }
-
-
