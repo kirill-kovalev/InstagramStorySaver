@@ -11,7 +11,7 @@ target 'InstaSaver' do
 	pod 'RxDataSources', '~> 4.0'
 #	pod 'RealmSwift'
 	
- 	pod 'Alamofire'
+# 	pod 'Alamofire'
 	pod 'SnapKit'
 #	pod 'SwiftyInsta', '~> 2.0'
 end
