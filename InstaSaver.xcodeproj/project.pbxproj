@@ -40,6 +40,7 @@
 		5D443D7F2558234F0075741E /* TTCommons-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D632558234F0075741E /* TTCommons-Light.ttf */; };
 		5D443D84255823650075741E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443D82255823650075741E /* Fonts.swift */; };
 		5D443D872558237C0075741E /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443D862558237C0075741E /* Assets.swift */; };
+		5D443D8A255824170075741E /* FontsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443D89255824170075741E /* FontsExtension.swift */; };
 		5D5B73D5253DE21500B8FD3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B73D4253DE21500B8FD3B /* AppDelegate.swift */; };
 		5D5B73DE253DE21600B8FD3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B73DD253DE21600B8FD3B /* Assets.xcassets */; };
 		5D5B73E1253DE21600B8FD3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B73DF253DE21600B8FD3B /* LaunchScreen.storyboard */; };
@@ -81,6 +82,7 @@
 		5D443D632558234F0075741E /* TTCommons-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTCommons-Light.ttf"; sourceTree = "<group>"; };
 		5D443D82255823650075741E /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		5D443D862558237C0075741E /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		5D443D89255824170075741E /* FontsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontsExtension.swift; sourceTree = "<group>"; };
 		5D5B73D1253DE21500B8FD3B /* InstaSaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaSaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D5B73D4253DE21500B8FD3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D5B73DD253DE21600B8FD3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 		5DEF5C772548AC770021E979 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				5D443D89255824170075741E /* FontsExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				5D5B73F5253DE34C00B8FD3B /* ContentViewProtocol.swift in Sources */,
 				5D443D872558237C0075741E /* Assets.swift in Sources */,
 				5D5B73D5253DE21500B8FD3B /* AppDelegate.swift in Sources */,
+				5D443D8A255824170075741E /* FontsExtension.swift in Sources */,
 				5D443D84255823650075741E /* Fonts.swift in Sources */,
 				5D5B73FA253DE3F400B8FD3B /* BasicView.swift in Sources */,
 			);
