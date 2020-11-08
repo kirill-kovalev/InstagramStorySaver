@@ -16,7 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //		UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
 		
 		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = FeedVC()
+		let navVC = UINavigationController(rootViewController: FeedVC())
+		navVC.isNavigationBarHidden = true
+		window?.rootViewController = navVC
 		window?.makeKeyAndVisible()
 		return true
 	}
