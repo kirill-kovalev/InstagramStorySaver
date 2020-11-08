@@ -1,0 +1,30 @@
+excluded:
+- Carthage
+- Pods
+- SUAI_API
+- MBRadioButton
+
+disabled_rules:
+- identifier_name
+- force_cast
+- line_length
+- shorthand_operator
+- weak_delegate
+- trailing_whitespace
+#- switch_case_alignment
+- class_delegate_protocol
+- function_body_length
+- type_body_length
+
+opt_in_rules:
+- vertical_whitespace_between_cases
+- vertical_whitespace_opening_braces
+
+switch_case_alignment:
+  indented_cases: true
+
+trailing_whitespace:
+- ignores_empty_lines: true
+- ignores_comments: true
+
+indentation: tabs
