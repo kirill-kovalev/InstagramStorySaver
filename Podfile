@@ -13,5 +13,5 @@ target 'InstaSaver' do
 	
  	pod 'Alamofire'
 	pod 'SnapKit'
-	pod 'SwiftyInsta', '~> 2.0'
+#	pod 'SwiftyInsta', '~> 2.0'
 end

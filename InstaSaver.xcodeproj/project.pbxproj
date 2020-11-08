@@ -8,6 +8,38 @@
 
 /* Begin PBXBuildFile section */
 		3A7D3846FCC8B8D354045493 /* Pods_InstaSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543AD59F60B5F1042C654948 /* Pods_InstaSaver.framework */; };
+		5D443D42255822AB0075741E /* SwiftagramCrypto in Frameworks */ = {isa = PBXBuildFile; productRef = 5D443D41255822AB0075741E /* SwiftagramCrypto */; };
+		5D443D44255822AB0075741E /* Swiftagram in Frameworks */ = {isa = PBXBuildFile; productRef = 5D443D43255822AB0075741E /* Swiftagram */; };
+		5D443D642558234F0075741E /* SFProDisplay-Ultralight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D472558234F0075741E /* SFProDisplay-Ultralight.ttf */; };
+		5D443D652558234F0075741E /* SFProDisplay-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D482558234F0075741E /* SFProDisplay-RegularItalic.ttf */; };
+		5D443D662558234F0075741E /* SFProDisplay-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D492558234F0075741E /* SFProDisplay-SemiboldItalic.ttf */; };
+		5D443D672558234F0075741E /* SFProDisplay-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D4A2558234F0075741E /* SFProDisplay-BoldItalic.ttf */; };
+		5D443D682558234F0075741E /* SFProDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D4B2558234F0075741E /* SFProDisplay-Medium.ttf */; };
+		5D443D692558234F0075741E /* SFProDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D4C2558234F0075741E /* SFProDisplay-Black.ttf */; };
+		5D443D6A2558234F0075741E /* SFProDisplay-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D4D2558234F0075741E /* SFProDisplay-ThinItalic.ttf */; };
+		5D443D6B2558234F0075741E /* SFProDisplay-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D4E2558234F0075741E /* SFProDisplay-Light.ttf */; };
+		5D443D6C2558234F0075741E /* SFProDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D4F2558234F0075741E /* SFProDisplay-Regular.ttf */; };
+		5D443D6D2558234F0075741E /* SFProDisplay-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D502558234F0075741E /* SFProDisplay-BlackItalic.ttf */; };
+		5D443D6E2558234F0075741E /* SFProDisplay-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D512558234F0075741E /* SFProDisplay-MediumItalic.ttf */; };
+		5D443D6F2558234F0075741E /* SFProDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D522558234F0075741E /* SFProDisplay-Bold.ttf */; };
+		5D443D702558234F0075741E /* SFProDisplay-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D532558234F0075741E /* SFProDisplay-HeavyItalic.ttf */; };
+		5D443D712558234F0075741E /* SFProDisplay-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D542558234F0075741E /* SFProDisplay-Semibold.ttf */; };
+		5D443D722558234F0075741E /* SFProDisplay-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D552558234F0075741E /* SFProDisplay-Heavy.ttf */; };
+		5D443D732558234F0075741E /* SFProDisplay-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D562558234F0075741E /* SFProDisplay-LightItalic.ttf */; };
+		5D443D742558234F0075741E /* SFProDisplay-UltralightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D572558234F0075741E /* SFProDisplay-UltralightItalic.ttf */; };
+		5D443D752558234F0075741E /* SFProDisplay-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D582558234F0075741E /* SFProDisplay-Thin.ttf */; };
+		5D443D762558234F0075741E /* TTCommons-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D5A2558234F0075741E /* TTCommons-LightItalic.ttf */; };
+		5D443D772558234F0075741E /* TTCommons-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D5B2558234F0075741E /* TTCommons-MediumItalic.ttf */; };
+		5D443D782558234F0075741E /* TTCommons-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D5C2558234F0075741E /* TTCommons-Regular.ttf */; };
+		5D443D792558234F0075741E /* TTCommons-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D5D2558234F0075741E /* TTCommons-Bold.ttf */; };
+		5D443D7A2558234F0075741E /* TTCommons-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D5E2558234F0075741E /* TTCommons-BoldItalic.ttf */; };
+		5D443D7B2558234F0075741E /* TTCommons-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D5F2558234F0075741E /* TTCommons-Medium.ttf */; };
+		5D443D7C2558234F0075741E /* TTCommons-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D602558234F0075741E /* TTCommons-Italic.ttf */; };
+		5D443D7D2558234F0075741E /* TTCommons-DemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D612558234F0075741E /* TTCommons-DemiBoldItalic.ttf */; };
+		5D443D7E2558234F0075741E /* TTCommons-DemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D622558234F0075741E /* TTCommons-DemiBold.ttf */; };
+		5D443D7F2558234F0075741E /* TTCommons-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D632558234F0075741E /* TTCommons-Light.ttf */; };
+		5D443D84255823650075741E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443D82255823650075741E /* Fonts.swift */; };
+		5D443D872558237C0075741E /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443D862558237C0075741E /* Assets.swift */; };
 		5D5B73D5253DE21500B8FD3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B73D4253DE21500B8FD3B /* AppDelegate.swift */; };
 		5D5B73DE253DE21600B8FD3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B73DD253DE21600B8FD3B /* Assets.xcassets */; };
 		5D5B73E1253DE21600B8FD3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B73DF253DE21600B8FD3B /* LaunchScreen.storyboard */; };
@@ -19,6 +51,36 @@
 /* Begin PBXFileReference section */
 		1B646CBA815BA7B6E6F6038D /* Pods-InstaSaver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaSaver.release.xcconfig"; path = "Target Support Files/Pods-InstaSaver/Pods-InstaSaver.release.xcconfig"; sourceTree = "<group>"; };
 		543AD59F60B5F1042C654948 /* Pods_InstaSaver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaSaver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D443D472558234F0075741E /* SFProDisplay-Ultralight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Ultralight.ttf"; sourceTree = "<group>"; };
+		5D443D482558234F0075741E /* SFProDisplay-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-RegularItalic.ttf"; sourceTree = "<group>"; };
+		5D443D492558234F0075741E /* SFProDisplay-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		5D443D4A2558234F0075741E /* SFProDisplay-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-BoldItalic.ttf"; sourceTree = "<group>"; };
+		5D443D4B2558234F0075741E /* SFProDisplay-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.ttf"; sourceTree = "<group>"; };
+		5D443D4C2558234F0075741E /* SFProDisplay-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Black.ttf"; sourceTree = "<group>"; };
+		5D443D4D2558234F0075741E /* SFProDisplay-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-ThinItalic.ttf"; sourceTree = "<group>"; };
+		5D443D4E2558234F0075741E /* SFProDisplay-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Light.ttf"; sourceTree = "<group>"; };
+		5D443D4F2558234F0075741E /* SFProDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.ttf"; sourceTree = "<group>"; };
+		5D443D502558234F0075741E /* SFProDisplay-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-BlackItalic.ttf"; sourceTree = "<group>"; };
+		5D443D512558234F0075741E /* SFProDisplay-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-MediumItalic.ttf"; sourceTree = "<group>"; };
+		5D443D522558234F0075741E /* SFProDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.ttf"; sourceTree = "<group>"; };
+		5D443D532558234F0075741E /* SFProDisplay-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-HeavyItalic.ttf"; sourceTree = "<group>"; };
+		5D443D542558234F0075741E /* SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
+		5D443D552558234F0075741E /* SFProDisplay-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Heavy.ttf"; sourceTree = "<group>"; };
+		5D443D562558234F0075741E /* SFProDisplay-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-LightItalic.ttf"; sourceTree = "<group>"; };
+		5D443D572558234F0075741E /* SFProDisplay-UltralightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-UltralightItalic.ttf"; sourceTree = "<group>"; };
+		5D443D582558234F0075741E /* SFProDisplay-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Thin.ttf"; sourceTree = "<group>"; };
+		5D443D5A2558234F0075741E /* TTCommons-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTCommons-LightItalic.ttf"; sourceTree = "<group>"; };
+		5D443D5B2558234F0075741E /* TTCommons-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTCommons-MediumItalic.ttf"; sourceTree = "<group>"; };
+		5D443D5C2558234F0075741E /* TTCommons-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTCommons-Regular.ttf"; sourceTree = "<group>"; };
+		5D443D5D2558234F0075741E /* TTCommons-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTCommons-Bold.ttf"; sourceTree = "<group>"; };
+		5D443D5E2558234F0075741E /* TTCommons-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTCommons-BoldItalic.ttf"; sourceTree = "<group>"; };
+		5D443D5F2558234F0075741E /* TTCommons-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTCommons-Medium.ttf"; sourceTree = "<group>"; };
+		5D443D602558234F0075741E /* TTCommons-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTCommons-Italic.ttf"; sourceTree = "<group>"; };
+		5D443D612558234F0075741E /* TTCommons-DemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTCommons-DemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		5D443D622558234F0075741E /* TTCommons-DemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTCommons-DemiBold.ttf"; sourceTree = "<group>"; };
+		5D443D632558234F0075741E /* TTCommons-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTCommons-Light.ttf"; sourceTree = "<group>"; };
+		5D443D82255823650075741E /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		5D443D862558237C0075741E /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		5D5B73D1253DE21500B8FD3B /* InstaSaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaSaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D5B73D4253DE21500B8FD3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D5B73DD253DE21600B8FD3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -35,6 +97,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D443D44255822AB0075741E /* Swiftagram in Frameworks */,
+				5D443D42255822AB0075741E /* SwiftagramCrypto in Frameworks */,
 				3A7D3846FCC8B8D354045493 /* Pods_InstaSaver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,6 +113,48 @@
 				1B646CBA815BA7B6E6F6038D /* Pods-InstaSaver.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		5D443D462558234F0075741E /* SF Pro */ = {
+			isa = PBXGroup;
+			children = (
+				5D443D472558234F0075741E /* SFProDisplay-Ultralight.ttf */,
+				5D443D482558234F0075741E /* SFProDisplay-RegularItalic.ttf */,
+				5D443D492558234F0075741E /* SFProDisplay-SemiboldItalic.ttf */,
+				5D443D4A2558234F0075741E /* SFProDisplay-BoldItalic.ttf */,
+				5D443D4B2558234F0075741E /* SFProDisplay-Medium.ttf */,
+				5D443D4C2558234F0075741E /* SFProDisplay-Black.ttf */,
+				5D443D4D2558234F0075741E /* SFProDisplay-ThinItalic.ttf */,
+				5D443D4E2558234F0075741E /* SFProDisplay-Light.ttf */,
+				5D443D4F2558234F0075741E /* SFProDisplay-Regular.ttf */,
+				5D443D502558234F0075741E /* SFProDisplay-BlackItalic.ttf */,
+				5D443D512558234F0075741E /* SFProDisplay-MediumItalic.ttf */,
+				5D443D522558234F0075741E /* SFProDisplay-Bold.ttf */,
+				5D443D532558234F0075741E /* SFProDisplay-HeavyItalic.ttf */,
+				5D443D542558234F0075741E /* SFProDisplay-Semibold.ttf */,
+				5D443D552558234F0075741E /* SFProDisplay-Heavy.ttf */,
+				5D443D562558234F0075741E /* SFProDisplay-LightItalic.ttf */,
+				5D443D572558234F0075741E /* SFProDisplay-UltralightItalic.ttf */,
+				5D443D582558234F0075741E /* SFProDisplay-Thin.ttf */,
+			);
+			path = "SF Pro";
+			sourceTree = "<group>";
+		};
+		5D443D592558234F0075741E /* TT Commons */ = {
+			isa = PBXGroup;
+			children = (
+				5D443D5A2558234F0075741E /* TTCommons-LightItalic.ttf */,
+				5D443D5B2558234F0075741E /* TTCommons-MediumItalic.ttf */,
+				5D443D5C2558234F0075741E /* TTCommons-Regular.ttf */,
+				5D443D5D2558234F0075741E /* TTCommons-Bold.ttf */,
+				5D443D5E2558234F0075741E /* TTCommons-BoldItalic.ttf */,
+				5D443D5F2558234F0075741E /* TTCommons-Medium.ttf */,
+				5D443D602558234F0075741E /* TTCommons-Italic.ttf */,
+				5D443D612558234F0075741E /* TTCommons-DemiBoldItalic.ttf */,
+				5D443D622558234F0075741E /* TTCommons-DemiBold.ttf */,
+				5D443D632558234F0075741E /* TTCommons-Light.ttf */,
+			);
+			path = "TT Commons";
 			sourceTree = "<group>";
 		};
 		5D52DED02542256C00DF5B19 /* Model */ = {
@@ -119,6 +225,8 @@
 		5D5B73EF253DE2CF00B8FD3B /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				5D443D862558237C0075741E /* Assets.swift */,
+				5D443D82255823650075741E /* Fonts.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -144,6 +252,8 @@
 		5DEF5C362548AC0A0021E979 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				5D443D462558234F0075741E /* SF Pro */,
+				5D443D592558234F0075741E /* TT Commons */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -183,6 +293,8 @@
 			);
 			name = InstaSaver;
 			packageProductDependencies = (
+				5D443D41255822AB0075741E /* SwiftagramCrypto */,
+				5D443D43255822AB0075741E /* Swiftagram */,
 			);
 			productName = InstaSaver;
 			productReference = 5D5B73D1253DE21500B8FD3B /* InstaSaver.app */;
@@ -213,6 +325,7 @@
 			mainGroup = 5D5B73C8253DE21500B8FD3B;
 			packageReferences = (
 				5DA8889F2551B8F90057DB07 /* XCRemoteSwiftPackageReference "SwiftyInsta" */,
+				5D443D40255822AB0075741E /* XCRemoteSwiftPackageReference "Swiftagram" */,
 			);
 			productRefGroup = 5D5B73D2253DE21500B8FD3B /* Products */;
 			projectDirPath = "";
@@ -228,8 +341,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D443D7E2558234F0075741E /* TTCommons-DemiBold.ttf in Resources */,
+				5D443D7B2558234F0075741E /* TTCommons-Medium.ttf in Resources */,
+				5D443D6E2558234F0075741E /* SFProDisplay-MediumItalic.ttf in Resources */,
+				5D443D752558234F0075741E /* SFProDisplay-Thin.ttf in Resources */,
+				5D443D712558234F0075741E /* SFProDisplay-Semibold.ttf in Resources */,
+				5D443D762558234F0075741E /* TTCommons-LightItalic.ttf in Resources */,
+				5D443D6D2558234F0075741E /* SFProDisplay-BlackItalic.ttf in Resources */,
+				5D443D722558234F0075741E /* SFProDisplay-Heavy.ttf in Resources */,
+				5D443D682558234F0075741E /* SFProDisplay-Medium.ttf in Resources */,
 				5D5B73E1253DE21600B8FD3B /* LaunchScreen.storyboard in Resources */,
+				5D443D792558234F0075741E /* TTCommons-Bold.ttf in Resources */,
+				5D443D642558234F0075741E /* SFProDisplay-Ultralight.ttf in Resources */,
 				5D5B73DE253DE21600B8FD3B /* Assets.xcassets in Resources */,
+				5D443D742558234F0075741E /* SFProDisplay-UltralightItalic.ttf in Resources */,
+				5D443D6A2558234F0075741E /* SFProDisplay-ThinItalic.ttf in Resources */,
+				5D443D7A2558234F0075741E /* TTCommons-BoldItalic.ttf in Resources */,
+				5D443D702558234F0075741E /* SFProDisplay-HeavyItalic.ttf in Resources */,
+				5D443D692558234F0075741E /* SFProDisplay-Black.ttf in Resources */,
+				5D443D772558234F0075741E /* TTCommons-MediumItalic.ttf in Resources */,
+				5D443D6C2558234F0075741E /* SFProDisplay-Regular.ttf in Resources */,
+				5D443D7C2558234F0075741E /* TTCommons-Italic.ttf in Resources */,
+				5D443D662558234F0075741E /* SFProDisplay-SemiboldItalic.ttf in Resources */,
+				5D443D6B2558234F0075741E /* SFProDisplay-Light.ttf in Resources */,
+				5D443D6F2558234F0075741E /* SFProDisplay-Bold.ttf in Resources */,
+				5D443D7D2558234F0075741E /* TTCommons-DemiBoldItalic.ttf in Resources */,
+				5D443D732558234F0075741E /* SFProDisplay-LightItalic.ttf in Resources */,
+				5D443D652558234F0075741E /* SFProDisplay-RegularItalic.ttf in Resources */,
+				5D443D672558234F0075741E /* SFProDisplay-BoldItalic.ttf in Resources */,
+				5D443D7F2558234F0075741E /* TTCommons-Light.ttf in Resources */,
+				5D443D782558234F0075741E /* TTCommons-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +442,9 @@
 			files = (
 				5D5B73F2253DE32000B8FD3B /* ViewController.swift in Sources */,
 				5D5B73F5253DE34C00B8FD3B /* ContentViewProtocol.swift in Sources */,
+				5D443D872558237C0075741E /* Assets.swift in Sources */,
 				5D5B73D5253DE21500B8FD3B /* AppDelegate.swift in Sources */,
+				5D443D84255823650075741E /* Fonts.swift in Sources */,
 				5D5B73FA253DE3F400B8FD3B /* BasicView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,6 +645,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5D443D40255822AB0075741E /* XCRemoteSwiftPackageReference "Swiftagram" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sbertix/Swiftagram.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.1;
+			};
+		};
 		5DA8889F2551B8F90057DB07 /* XCRemoteSwiftPackageReference "SwiftyInsta" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TheM4hd1/SwiftyInsta.git";
@@ -511,6 +662,19 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5D443D41255822AB0075741E /* SwiftagramCrypto */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D443D40255822AB0075741E /* XCRemoteSwiftPackageReference "Swiftagram" */;
+			productName = SwiftagramCrypto;
+		};
+		5D443D43255822AB0075741E /* Swiftagram */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D443D40255822AB0075741E /* XCRemoteSwiftPackageReference "Swiftagram" */;
+			productName = Swiftagram;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5D5B73C9253DE21500B8FD3B /* Project object */;
 }
