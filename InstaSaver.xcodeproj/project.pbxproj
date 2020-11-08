@@ -52,6 +52,15 @@
 		5D443DA3255824F80075741E /* FeedStoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443D9C255824F80075741E /* FeedStoriesCell.swift */; };
 		5D443DA5255824F80075741E /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443D9E255824F80075741E /* FeedView.swift */; };
 		5D443DA6255824F80075741E /* StoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DA0255824F80075741E /* StoriesViewController.swift */; };
+		5D443DD5255827F20075741E /* HorizontalScrollableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DCC255827F20075741E /* HorizontalScrollableCell.swift */; };
+		5D443DD6255827F20075741E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DCD255827F20075741E /* ProfileView.swift */; };
+		5D443DD7255827F20075741E /* UserPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DCE255827F20075741E /* UserPageHeaderView.swift */; };
+		5D443DD9255827F20075741E /* PostCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DD0255827F20075741E /* PostCollectionView.swift */; };
+		5D443DDA255827F20075741E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DD1255827F20075741E /* ProfileViewController.swift */; };
+		5D443DDB255827F20075741E /* HilightsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DD2255827F20075741E /* HilightsCollectionView.swift */; };
+		5D443DDD255827F20075741E /* StoriesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DD4255827F20075741E /* StoriesCollectionView.swift */; };
+		5D443DE225582A840075741E /* ISDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DE125582A840075741E /* ISDataTypes.swift */; };
+		5D443DE525582AC50075741E /* SwiftgramToISDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DE425582AC50075741E /* SwiftgramToISDataTypes.swift */; };
 		5D5B73D5253DE21500B8FD3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B73D4253DE21500B8FD3B /* AppDelegate.swift */; };
 		5D5B73DE253DE21600B8FD3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B73DD253DE21600B8FD3B /* Assets.xcassets */; };
 		5D5B73E1253DE21600B8FD3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B73DF253DE21600B8FD3B /* LaunchScreen.storyboard */; };
@@ -105,6 +114,15 @@
 		5D443D9C255824F80075741E /* FeedStoriesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedStoriesCell.swift; sourceTree = "<group>"; };
 		5D443D9E255824F80075741E /* FeedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		5D443DA0255824F80075741E /* StoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesViewController.swift; sourceTree = "<group>"; };
+		5D443DCC255827F20075741E /* HorizontalScrollableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalScrollableCell.swift; sourceTree = "<group>"; };
+		5D443DCD255827F20075741E /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		5D443DCE255827F20075741E /* UserPageHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPageHeaderView.swift; sourceTree = "<group>"; };
+		5D443DD0255827F20075741E /* PostCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollectionView.swift; sourceTree = "<group>"; };
+		5D443DD1255827F20075741E /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		5D443DD2255827F20075741E /* HilightsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HilightsCollectionView.swift; sourceTree = "<group>"; };
+		5D443DD4255827F20075741E /* StoriesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesCollectionView.swift; sourceTree = "<group>"; };
+		5D443DE125582A840075741E /* ISDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISDataTypes.swift; sourceTree = "<group>"; };
+		5D443DE425582AC50075741E /* SwiftgramToISDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftgramToISDataTypes.swift; sourceTree = "<group>"; };
 		5D5B73D1253DE21500B8FD3B /* InstaSaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaSaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D5B73D4253DE21500B8FD3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D5B73DD253DE21600B8FD3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -201,9 +219,25 @@
 			path = StoriesViewController;
 			sourceTree = "<group>";
 		};
+		5D443DCB255827F20075741E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5D443DD1255827F20075741E /* ProfileViewController.swift */,
+				5D443DCD255827F20075741E /* ProfileView.swift */,
+				5D443DCE255827F20075741E /* UserPageHeaderView.swift */,
+				5D443DD2255827F20075741E /* HilightsCollectionView.swift */,
+				5D443DD4255827F20075741E /* StoriesCollectionView.swift */,
+				5D443DD0255827F20075741E /* PostCollectionView.swift */,
+				5D443DCC255827F20075741E /* HorizontalScrollableCell.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		5D52DED02542256C00DF5B19 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5D443DE125582A840075741E /* ISDataTypes.swift */,
+				5D443DE425582AC50075741E /* SwiftgramToISDataTypes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -247,6 +281,7 @@
 		5D5B73EC253DE2A100B8FD3B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				5D443DCB255827F20075741E /* Profile */,
 				5D443D99255824F80075741E /* Feed */,
 			);
 			path = Modules;
@@ -492,10 +527,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D443DE525582AC50075741E /* SwiftgramToISDataTypes.swift in Sources */,
+				5D443DD9255827F20075741E /* PostCollectionView.swift in Sources */,
+				5D443DD7255827F20075741E /* UserPageHeaderView.swift in Sources */,
 				5D5B73F2253DE32000B8FD3B /* ViewController.swift in Sources */,
 				5D443D942558245A0075741E /* ISSectionHeaderView.swift in Sources */,
 				5D5B73F5253DE34C00B8FD3B /* ContentViewProtocol.swift in Sources */,
+				5D443DE225582A840075741E /* ISDataTypes.swift in Sources */,
 				5D443D872558237C0075741E /* Assets.swift in Sources */,
+				5D443DDA255827F20075741E /* ProfileViewController.swift in Sources */,
 				5D443DA6255824F80075741E /* StoriesViewController.swift in Sources */,
 				5D443D922558245A0075741E /* ISAvatarView.swift in Sources */,
 				5D5B73D5253DE21500B8FD3B /* AppDelegate.swift in Sources */,
@@ -504,10 +544,14 @@
 				5D443D952558245A0075741E /* ISTextField.swift in Sources */,
 				5D443DA5255824F80075741E /* FeedView.swift in Sources */,
 				5D443DA2255824F80075741E /* FeedItemCell.swift in Sources */,
+				5D443DD6255827F20075741E /* ProfileView.swift in Sources */,
 				5D443D962558245A0075741E /* ISStoryView.swift in Sources */,
 				5D443D84255823650075741E /* Fonts.swift in Sources */,
+				5D443DD5255827F20075741E /* HorizontalScrollableCell.swift in Sources */,
 				5D443D932558245A0075741E /* FeedSearchView.swift in Sources */,
+				5D443DDD255827F20075741E /* StoriesCollectionView.swift in Sources */,
 				5D443DA3255824F80075741E /* FeedStoriesCell.swift in Sources */,
+				5D443DDB255827F20075741E /* HilightsCollectionView.swift in Sources */,
 				5D5B73FA253DE3F400B8FD3B /* BasicView.swift in Sources */,
 				5D443DA1255824F80075741E /* FeedController.swift in Sources */,
 			);
