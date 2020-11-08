@@ -23,14 +23,18 @@ class FeedViewModel {
 	var shouldShowStories = BehaviorRelay<Bool>(value: true)
 	var logoutTrigger = PublishRelay<Void>()
 	
+	var userlist:[ISUser] = []
 	func transform(input:Input) -> Output{
 		
 		let users = input.searchQuery.flatMap { (query) -> Observable<[ISUser]> in
 			if let query = query,
 			   !query.isEmpty {
 				return ISAPI.searchUser(query: query)
+							.do(onNext: {[weak self] in self?.userlist = $0})
 			}else {
 				return ISAPI.getFriends()
+							.do(onNext: {[weak self] in self?.userlist = $0})
+				
 			}
 		}
 
@@ -40,12 +44,23 @@ class FeedViewModel {
 		input.logoutButtonTap.bind(to: self.logoutTrigger).disposed(by: bag)
 		ISAPI.needsAuth.compactMap {$0 ? Void() : nil}.bind(to: self.logoutTrigger).disposed(by: bag)
 		
+		let userPresent = input.displayUserTrigger.compactMap {[weak self] (indexPath) -> ISUser? in
+//			if indexPath.section
+			if let self = self,
+			   indexPath.row >= 0,
+			   indexPath.row < self.userlist.count{
+				return self.userlist[indexPath.row]
+			}else{
+				return nil
+			}
+		}
 		
 		return Output(
 			shouldShowStories: self.shouldShowStories.asObservable(),
 			stories: Observable<[ISHilight]>.just([]),
 			users: users,
-			logoutTrigger: self.logoutTrigger.do(onNext: {})
+			logoutTrigger: self.logoutTrigger.do(onNext: {}),
+			userPresentTrigger: userPresent
 		)
 	}
 	
@@ -55,14 +70,13 @@ class FeedViewModel {
 		var searchQuery:ControlProperty<String?>
 		var editingBeganEvent:ControlEvent<Void>
 		var editingEndEvent:ControlEvent<Void>
+		var displayUserTrigger:Observable<IndexPath>
 	}
 	struct Output {
 		var shouldShowStories:Observable<Bool>
-		
 		var stories:Observable<[ISHilight]>
-		
 		var users:Observable<[ISUser]>
-		
 		var logoutTrigger:Observable<Void>
+		var userPresentTrigger:Observable<ISUser>
 	}
 }

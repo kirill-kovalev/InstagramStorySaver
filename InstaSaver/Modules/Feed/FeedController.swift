@@ -37,8 +37,21 @@ class FeedVC: ViewController<FeedView> {
 				return cell
 			case .user(let user):
 				let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath) as! FriendsCell
+				
 				cell.username.text = user.fullName ?? user.username
 				cell.timestamp.text = " @\(user.username)"
+				
+				if let url = user.avatar{
+					URLSession.shared.rx
+						.data(request: URLRequest(url: url))
+						.map(UIImage.init)
+						.observeOn(MainScheduler.instance)
+						.bind(to: cell.avatar.rx.image)
+						.disposed(by: self.bag)
+				}else {
+					print("avatar is nil")
+				}
+				
 				return cell
 		}
 		
@@ -54,12 +67,19 @@ class FeedVC: ViewController<FeedView> {
 		
 		bind(output: viewModel.transform(input: input))
 	}
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+	}
 	var input:FeedViewModel.Input {
 		FeedViewModel.Input(
 			logoutButtonTap: self.rootView.logoutButton.rx.tap,
 			searchQuery: self.rootView.searchView.RXtextfield.text,
 			editingBeganEvent: self.rootView.searchView.RXtextfield.controlEvent(.editingDidBegin),
-			editingEndEvent: self.rootView.searchView.RXtextfield.controlEvent(.editingDidEnd))
+			editingEndEvent: self.rootView.searchView.RXtextfield.controlEvent(.editingDidEnd),
+			displayUserTrigger: self.rootView.contentTable.rx.itemSelected
+							.do(onNext: {[weak self] in self?.rootView.contentTable.deselectRow(at: $0, animated: false) })
+		)
 	}
 	let bag = DisposeBag()
 	
@@ -73,6 +93,12 @@ class FeedVC: ViewController<FeedView> {
 		
 		output.logoutTrigger.subscribe(onNext: { [weak self] in
 			self?.present(LoginViewController(), animated: true, completion: nil)
+		}).disposed(by: bag)
+		
+		output.userPresentTrigger.subscribe(onNext: { [weak self] user in
+			let vc = ProfileViewController()
+			vc.user.accept(user)
+			self?.navigationController?.pushViewController(vc, animated: true)
 		}).disposed(by: bag)
 	}
 
