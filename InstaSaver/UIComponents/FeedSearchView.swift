@@ -9,9 +9,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class FeedSearchView: UIView ,ContentViewProtocol{
+class FeedSearchView: UIView, ContentViewProtocol {
 	let bag = DisposeBag()
-	required init(){
+	required init() {
 		super.init(frame: .zero)
 		addViews()
 		setupConstraints()
@@ -29,7 +29,6 @@ class FeedSearchView: UIView ,ContentViewProtocol{
 	}
 	
 	func setupConstraints() {
-		
 		var const = NSLayoutConstraint()
 		backButton.snp.makeConstraints { (make) in
 			const = make.left.equalToSuperview().offset(-35).constraint.layoutConstraints.first ?? const
@@ -58,10 +57,10 @@ class FeedSearchView: UIView ,ContentViewProtocol{
 		}.disposed(by: bag)
 	}
 	
-	public var RXbutton:Reactive<UIButton> {self.backButton.rx}
-	public var RXtextfield:Reactive<UITextField> {self.textField.textfield.rx}
+	public var RXbutton: Reactive<UIButton> {self.backButton.rx}
+	public var RXtextfield: Reactive<UITextField> {self.textField.textfield.rx}
 	
-	private let backButton:UIButton = {
+	private let backButton: UIButton = {
 		let btn = UIButton(frame: .zero)
 		btn.setImage(Asset.Icons.arrowBack.image, for: .normal)
 		btn.imageView?.snp.removeConstraints()
@@ -72,6 +71,5 @@ class FeedSearchView: UIView ,ContentViewProtocol{
 		return btn
 	}()
 	private var textField = ISTextField()
-	
 	
 }

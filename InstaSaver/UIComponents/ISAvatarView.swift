@@ -9,25 +9,26 @@ import UIKit
 
 @IBDesignable
 class ISAvatarView: UIImageView {
-	
-	enum Style{
+	enum Style {
 		case avatar
 		case avatarSmall
 		case highlights
 	}
-	private var _style:Style = .avatar
-	public var style:Style {
-		get{
+	private var _style: Style = .avatar
+	public var style: Style {
+		get {
 			return self._style
 		}
-		set{
+		set {
 			self._style = newValue
 			
-			switch style{
+			switch style {
 				case .avatar:
 					self.frame.size = CGSize(width: 117, height: 117)
+
 				case .avatarSmall:
 					self.frame.size = CGSize(width: 35, height: 35)
+
 				case .highlights:
 					self.frame.size = CGSize(width: 60, height: 60)
 			}
@@ -36,24 +37,24 @@ class ISAvatarView: UIImageView {
 		}
 	}
 	
-	convenience init(style:Style = .avatar){
+	convenience init(style: Style = .avatar) {
 		self.init(frame: .zero)
 		self.style = style
 		setupBorder()
 		self.contentMode = .scaleAspectFill
 	}
-	private func setupBorder(){
+	private func setupBorder() {
 		layer.masksToBounds = true
 		layer.borderColor = self.borderColor.cgColor
 	}
 	
 	@IBInspectable
-	public var borderColor:UIColor = Asset.Colors.purple.color
-	public override var image:UIImage? {
-		get{
+	public var borderColor: UIColor = Asset.Colors.purple.color
+	public override var image: UIImage? {
+		get {
 			return super.image
 		}
-		set{
+		set {
 			super.image = newValue ?? Asset.Images.imagePlaceholder.image
 		}
 	}

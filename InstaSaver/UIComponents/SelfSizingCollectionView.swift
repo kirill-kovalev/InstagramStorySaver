@@ -7,13 +7,9 @@
 
 import UIKit
 
-
 class AutoSizedCollectionView: UICollectionView {
-
 	override var intrinsicContentSize: CGSize {
-		get {
-			return self.contentSize
-		}
+		 return self.contentSize
 	}
 	override func reloadData() {
 		super.reloadData()
@@ -22,7 +18,7 @@ class AutoSizedCollectionView: UICollectionView {
 	}
 	
 	override func sizeThatFits(_ size: CGSize) -> CGSize {
-		if (self.superview != nil) {
+		if self.superview != nil {
 			self.superview?.layoutIfNeeded()
 		}
 

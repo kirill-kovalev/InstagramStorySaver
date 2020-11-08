@@ -7,14 +7,14 @@
 
 import UIKit
 
-class ISStoryView:UIStackView {
-	private lazy var storyImageShadowLayer:CALayer = {
+class ISStoryView: UIStackView {
+	private lazy var storyImageShadowLayer: CALayer = {
 		let l = CALayer()
 		l.shadowColor = UIColor.purple.cgColor
 		l.shadowRadius = 30
 		return l
 	}()
-	lazy var storyImage:UIImageView = {
+	lazy var storyImage: UIImageView = {
 		let v = UIImageView(frame: .zero)
 		v.contentMode = .scaleAspectFill
 		v.layer.addSublayer(storyImageShadowLayer)
@@ -24,7 +24,7 @@ class ISStoryView:UIStackView {
 		v.layer.masksToBounds = true
 		return v
 	}()
-	let timestampText:UILabel = {
+	let timestampText: UILabel = {
 		let v = UILabel(frame: .zero)
 		v.font = .subtitleGray
 		v.textColor = Asset.Colors.black5.color
@@ -32,8 +32,8 @@ class ISStoryView:UIStackView {
 		v.text = "...hours ago"
 		return v
 	}()
-	convenience init(a:Int) {
-		self.init(frame:.zero)
+	convenience init(a: Int) {
+		self.init(frame: .zero)
 		setup()
 	}
 	private func setup() {
@@ -51,7 +51,6 @@ class ISStoryView:UIStackView {
 }
 
 public class EdgeShadowLayer: CAGradientLayer {
-
 	public enum Edge {
 		case Top
 		case Left
@@ -59,11 +58,13 @@ public class EdgeShadowLayer: CAGradientLayer {
 		case Right
 	}
 
-	public init(forView view: UIView,
-				edge: Edge = Edge.Top,
-				shadowRadius radius: CGFloat = 20.0,
-				toColor: UIColor = UIColor.white,
-				fromColor: UIColor = UIColor.black) {
+	public init(
+		forView view: UIView,
+		edge: Edge = Edge.Top,
+		shadowRadius radius: CGFloat = 20.0,
+		toColor: UIColor = UIColor.white,
+		fromColor: UIColor = UIColor.black
+	) {
 		super.init()
 		self.colors = [fromColor.cgColor, toColor.cgColor]
 		self.shadowRadius = radius
@@ -75,14 +76,17 @@ public class EdgeShadowLayer: CAGradientLayer {
 				startPoint = CGPoint(x: 0.5, y: 0.0)
 				endPoint = CGPoint(x: 0.5, y: 1.0)
 				self.frame = CGRect(x: 0.0, y: 0.0, width: viewFrame.width, height: shadowRadius)
+
 			case .Bottom:
 				startPoint = CGPoint(x: 0.5, y: 1.0)
 				endPoint = CGPoint(x: 0.5, y: 0.0)
 				self.frame = CGRect(x: 0.0, y: viewFrame.height - shadowRadius, width: viewFrame.width, height: shadowRadius)
+
 			case .Left:
 				startPoint = CGPoint(x: 0.0, y: 0.5)
 				endPoint = CGPoint(x: 1.0, y: 0.5)
 				self.frame = CGRect(x: 0.0, y: 0.0, width: shadowRadius, height: viewFrame.height)
+
 			case .Right:
 				startPoint = CGPoint(x: 1.0, y: 0.5)
 				endPoint = CGPoint(x: 0.0, y: 0.5)
@@ -94,4 +98,3 @@ public class EdgeShadowLayer: CAGradientLayer {
 		fatalError("init(coder:) has not been implemented")
 	}
 }
-

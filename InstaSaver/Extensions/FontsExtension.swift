@@ -19,7 +19,7 @@ import UIKit
 900    Extra Black, Fat, Poster or Ultra Black
 */
 
-extension UIFont{
+extension UIFont {
 	static let header = FontFamily.SFProDisplay.semibold.font(size: 36)
 	static let title = FontFamily.SFProDisplay.semibold.font(size: 24)
 	static let subtitle = FontFamily.SFProDisplay.semibold.font(size: 18)

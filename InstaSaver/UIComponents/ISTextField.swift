@@ -8,14 +8,13 @@
 import UIKit
 
 class ISTextField: UIView {
-	
-	let textfield:UITextField = {
+	let textfield: UITextField = {
 		let tf = UITextField(frame: .zero)
 		tf.font = .searchfield
 		tf.backgroundColor = .clear
 		return tf
 	}()
-	let btn:UIButton = {
+	let btn: UIButton = {
 		let btn = UIButton(frame: .zero)
 		btn.setImage(Asset.Icons.search.image, for: .normal)
 		return btn
@@ -24,7 +23,7 @@ class ISTextField: UIView {
 		self.init(frame: .zero)
 		setup()
 	}
-	private func setup(){
+	private func setup() {
 		self.addSubview(textfield)
 		self.addSubview(btn)
 		
@@ -51,7 +50,7 @@ class ISTextField: UIView {
 		setupInactive()
 	}
 	
-	@objc private func setupActive(){
+	@objc private func setupActive() {
 		UIView.animate(withDuration: 0.3) {
 			self.backgroundColor = Asset.Colors.white.color
 			self.layer.borderColor = Asset.Colors.black5.color.withAlphaComponent(0.24).cgColor
@@ -61,8 +60,7 @@ class ISTextField: UIView {
 			self.layer.shadowOffset = CGSize(width: 4, height: 8)
 		}
 	}
-	@objc private func setupInactive(){
-		
+	@objc private func setupInactive() {
 		self.textfield.placeholder = "profile search"
 		UIView.animate(withDuration: 0.3) {
 			self.backgroundColor = Asset.Colors.black1.color

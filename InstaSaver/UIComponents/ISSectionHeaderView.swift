@@ -7,16 +7,14 @@
 
 import UIKit
 
-
-
-fileprivate func labelGenerator(_ text: String) ->UILabel {
+private func labelGenerator(_ text: String) -> UILabel {
 	let label = UILabel(frame: .zero)
 	label.font = .subtitle
 	label.textColor = Asset.Colors.black.color
 	label.text = text
 	return label
 }
-fileprivate func spacerGenerator()->UIView {
+private func spacerGenerator() -> UIView {
 	let view = UIView(frame: CGRect(x: 0, y: 0, width: 240, height: 1))
 	view.backgroundColor = Asset.Colors.black1.color
 	view.snp.makeConstraints {
@@ -26,16 +24,16 @@ fileprivate func spacerGenerator()->UIView {
 	return view
 }
 
-class ISSectionHeaderView:UIStackView {
-	var title:String {
-		get{
+class ISSectionHeaderView: UIStackView {
+	var title: String {
+		get {
 			return (self.arrangedSubviews.first as? UILabel)?.text ?? ""
 		}
-		set{
+		set {
 			(self.arrangedSubviews.first as? UILabel)?.text = newValue
 		}
 	}
-	convenience init(title:String) {
+	convenience init(title: String) {
 		self.init(arrangedSubviews: [
 			labelGenerator(title),
 			spacerGenerator()

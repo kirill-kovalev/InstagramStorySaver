@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //		UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
 		
 		window = UIWindow(frame: UIScreen.main.bounds)
-//		window?.rootViewController =
+		window?.rootViewController = FeedVC()
 		window?.makeKeyAndVisible()
 		return true
 	}
