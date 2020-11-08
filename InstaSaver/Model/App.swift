@@ -13,12 +13,55 @@ import ComposableRequestCrypto
 import Swiftagram
 import SwiftagramCrypto
 
-
-class ISAPI {
-//	var needsAuth = BehaviorRelay<Bool>(value: false)
-	private var secret:Secret? = nil
+let ISAPI = ISapi()
+class ISapi {
 	
-	public var needsAuth:Bool {secret == nil}
+	private var secret:Secret? { secretObservable.value }
+	private var secretObservable = BehaviorRelay<Secret?>(value:nil)
+	
+	lazy var needsAuth = secretObservable.asObservable().map { $0 == nil }
+	
+	init() {
+		if let secret = KeychainStorage<Secret>().all().first {
+			self.auth(secret)
+		}
+	}
+	
+	func auth(_ s:Secret){
+		KeychainStorage<Secret>().store(s)
+		secretObservable.accept(s)
+	}
+	func logout(){
+		KeychainStorage<Secret>().removeAll()
+		secretObservable.accept(nil)
+	}
+	
+	func searchUser(query:String)-> Observable<[ISUser]>{
+		let publisher = PublishSubject<[ISUser]>()
+		publisher.on(.next([]))
+		guard let secret = secret else {
+			publisher.on(.completed)
+			return publisher.asObservable()
+		}
+		
+		
+		
+		Endpoint.User.all(matching: query)
+			.unlocking(with: secret)
+			.task(maxLength: .max, by: .default, onComplete: { _ in
+				publisher.on(.completed)
+			}, onChange: {
+				switch $0{
+					case .success(let data):
+						if let users = data.users?.map({ $0.toISUser() }) {
+							publisher.on(.next(users))
+						}
+					case .failure(let error): publisher.on(.error(error))
+				}
+			})
+			.resume()
+		return publisher.asObservable()
+	}
 	
 	func getFriends() -> Observable<[ISUser]>{
 		let publisher = PublishSubject<[ISUser]>()
@@ -87,4 +130,5 @@ class ISAPI {
 			.resume()
 		return publisher.asObservable()
 	}
+	
 }
