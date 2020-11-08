@@ -94,15 +94,18 @@ class ISapi {
 		
 		let cache = [ISMedia]()
 		publisher.on(.next(cache))
+		
+		var allPosts = [ISMedia]()
 		Endpoint.Media.Posts.owned(by: user.identity)
 			.unlocking(with: secret)
-			.task(maxLength: 10, by: .default, onComplete: { _ in
+			.task(maxLength: 3, by: .default, onComplete: { _ in
 				publisher.on(.completed)
 			}, onChange: {
 				switch $0{
 					case .success(let data):
 						if let posts = data.media?.map({$0.toISMedia()}) {
-							publisher.on(.next(posts))
+							allPosts.append(contentsOf: posts)
+							publisher.on(.next(allPosts))
 						}
 					case .failure(let error): publisher.on(.error(error))
 				}
@@ -131,4 +134,25 @@ class ISapi {
 		return publisher.asObservable()
 	}
 	
+//	func getTray(){
+////		let publisher = PublishSubject<ISHilight>()
+//		print("start")
+//		guard let secret = secret else { return }//publisher.asObservable()}
+//		print("secret")
+//		Endpoint.News.recent.unlocking(with: secret).task(by: .default) {
+//			print("loaded")
+//			switch $0 {
+//				
+//				case .success(let data):
+//					
+//					
+//				case .failure(let err):
+//					print(err)
+//			}
+//		}.resume()
+//	}
 }
+
+
+
+
