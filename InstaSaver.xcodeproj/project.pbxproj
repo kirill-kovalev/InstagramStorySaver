@@ -66,6 +66,7 @@
 		5D443DF125585F7C0075741E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DF025585F7C0075741E /* LoginController.swift */; };
 		5D443DF6255870440075741E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DF5255870440075741E /* ProfileViewModel.swift */; };
 		5D443DFC2558A7690075741E /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DFB2558A7690075741E /* PreviewController.swift */; };
+		5D443DFF2558A83D0075741E /* PreviewDisplayProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DFE2558A83D0075741E /* PreviewDisplayProtocol.swift */; };
 		5D5B73D5253DE21500B8FD3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B73D4253DE21500B8FD3B /* AppDelegate.swift */; };
 		5D5B73DE253DE21600B8FD3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B73DD253DE21600B8FD3B /* Assets.xcassets */; };
 		5D5B73E1253DE21600B8FD3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B73DF253DE21600B8FD3B /* LaunchScreen.storyboard */; };
@@ -133,6 +134,7 @@
 		5D443DF025585F7C0075741E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		5D443DF5255870440075741E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		5D443DFB2558A7690075741E /* PreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
+		5D443DFE2558A83D0075741E /* PreviewDisplayProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewDisplayProtocol.swift; sourceTree = "<group>"; };
 		5D5B73D1253DE21500B8FD3B /* InstaSaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaSaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D5B73D4253DE21500B8FD3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D5B73DD253DE21600B8FD3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 		5D443DFA2558A7690075741E /* Preview */ = {
 			isa = PBXGroup;
 			children = (
+				5D443DFE2558A83D0075741E /* PreviewDisplayProtocol.swift */,
 				5D443DFB2558A7690075741E /* PreviewController.swift */,
 			);
 			path = Preview;
@@ -575,6 +578,7 @@
 				5D443D972558245A0075741E /* SelfSizingCollectionView.swift in Sources */,
 				5D443D8A255824170075741E /* FontsExtension.swift in Sources */,
 				5D443D952558245A0075741E /* ISTextField.swift in Sources */,
+				5D443DFF2558A83D0075741E /* PreviewDisplayProtocol.swift in Sources */,
 				5D443DED25583E940075741E /* FeedViewModel.swift in Sources */,
 				5D443DA5255824F80075741E /* FeedView.swift in Sources */,
 				5D443DA2255824F80075741E /* FeedItemCell.swift in Sources */,
