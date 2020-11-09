@@ -26,9 +26,11 @@ class FeedViewModel {
 			if let query = query,
 			   !query.isEmpty {
 				return ISAPI.searchUser(query: query)
+							.compactMap {$0}
 							.do(onNext: {[weak self] in self?.userlist = $0})
 			} else {
 				return ISAPI.getFriends()
+							.compactMap {$0}
 							.do(onNext: {[weak self] in self?.userlist = $0})
 				
 			}
@@ -37,7 +39,9 @@ class FeedViewModel {
 		input.editingBeganEvent.map { _ in false}.bind(to: shouldShowStories).disposed(by: bag)
 		input.editingEndEvent.map { _ in true}.bind(to: shouldShowStories).disposed(by: bag)
 		
-		input.logoutButtonTap.bind(to: self.logoutTrigger).disposed(by: bag)
+		input.logoutButtonTap
+			.do(onNext: {_ in ISAPI.logout()})
+			.bind(to: self.logoutTrigger).disposed(by: bag)
 		ISAPI.needsAuth.compactMap {$0 ? Void() : nil}.bind(to: self.logoutTrigger).disposed(by: bag)
 		
 		let userPresent = input.displayUserTrigger.compactMap {[weak self] (indexPath) -> ISUser? in
