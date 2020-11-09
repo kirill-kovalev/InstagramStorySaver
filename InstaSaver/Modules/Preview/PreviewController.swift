@@ -12,8 +12,9 @@ import RxCocoa
 class PreviewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 	let bag = DisposeBag()
 	
+	let collection = PreviewCollectionView()
 	override func loadView() {
-		self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+		self.collectionView = collection
 	}
 
     override func viewDidLoad() {
@@ -24,9 +25,11 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 
         // Register cell classes
 		self.collectionView.register(PreviewCell.self, forCellWithReuseIdentifier: "\(PreviewCell.self)")
-		(collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection = .horizontal
-		(collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumLineSpacing = 0
-		collectionView.isPagingEnabled = true
+		self.modalPresentationStyle = .overFullScreen
+		self.collection.backButton.rx.tap.subscribe(onNext: { [weak self] in
+															self?.dismiss(animated: true, completion: nil)
+													})
+													.disposed(by: bag)
 		
     }
 	

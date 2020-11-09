@@ -32,7 +32,7 @@ class PreviewCollectionView: UICollectionView {
 	private func setupConstraints() {
 		backButton.snp.makeConstraints { (make) in
 			make.height.width.equalTo(50)
-			make.left.equalToSuperview().offset(30)
+			make.left.equalTo(frameLayoutGuide).offset(30)
 			make.top.equalTo(safeAreaLayoutGuide).offset(20)
 		}
 	}
