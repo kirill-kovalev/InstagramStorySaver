@@ -18,20 +18,34 @@ class ISapi {
 	private var secret: Secret? { secretObservable.value }
 	private var secretObservable = BehaviorRelay<Secret?>(value: nil)
 	
-	lazy var needsAuth = secretObservable.asObservable().map { $0 == nil }
+	private var authPublish = ReplaySubject<Bool>.create(bufferSize: 3)
+	lazy var needsAuth = authPublish.asObservable()
 	
+	private let bag = DisposeBag()
+	
+	private let storage = KeychainStorage<Secret>()
 	init() {
-		if let secret = KeychainStorage<Secret>().all().first {
+		secretObservable.asObservable()
+			.map { $0 == nil }
+			.bind(to: authPublish)
+			.disposed(by: bag)
+		
+		if let secret = storage.all().first {
+			print("auth: ok")
 			self.auth(secret)
+		} else {
+			print("auth: err")
+			self.logout()
 		}
+		
 	}
 	
 	func auth(_ s: Secret) {
-		KeychainStorage<Secret>().store(s)
+		KeychainStorage().store(s)
 		secretObservable.accept(s)
 	}
 	func logout() {
-		KeychainStorage<Secret>().removeAll()
+		storage.removeAll()
 		secretObservable.accept(nil)
 	}
 	
@@ -93,6 +107,7 @@ class ISapi {
 		publisher.on(.next(cache))
 		
 		var allPosts = [ISMedia]()
+	
 		Endpoint.Media.Posts.owned(by: user.identity)
 			.unlocking(with: secret)
 			.task(maxLength: 3, by: .default, onComplete: { _ in
@@ -111,7 +126,7 @@ class ISapi {
 		return publisher.asObservable()
 	}
 	
-	func getStories(of user: ISUser)-> Observable<ISHilight> {
+	func getStories(of user: ISUser) -> Observable<ISHilight> {
 		let publisher = PublishSubject<ISHilight>()
 		
 		guard let secret = secret else { return publisher.asObservable()}
@@ -131,21 +146,49 @@ class ISapi {
 		return publisher.asObservable()
 	}
 	
-//	func getTray(){
-//	let publisher = PublishSubject<ISHilight>()
-//		print("start")
-//		guard let secret = secret else { return }//publisher.asObservable()}
-//		print("secret")
-//		Endpoint.News.recent.unlocking(with: secret).task(by: .default) {
-//			print("loaded")
-//			switch $0 {
-//				
-//				case .success(let data):
-//					
-//					
-//				case .failure(let err):
-//					print(err)
-//			}
-//		}.resume()
-//	}
+	func getTray(of user: ISUser) -> Observable<[ISHilight]> {
+		let publisher = PublishSubject<[ISHilight]>()
+		print("start")
+		guard let secret = secret else { return publisher.asObservable()}//
+		print("secret")
+		Endpoint.Media.Stories.followed
+			.unlocking(with: secret).task(by: .default) {
+				print("loaded")
+				switch $0 {
+					case .success(let data):
+						if let tray = data.items?.map({$0.toISHilight()}) {
+							publisher.on(.next(tray))
+						}
+						
+					case .failure(let err):
+						print("tray", err)
+						publisher.on(.error(err))
+				}
+				publisher.on(.completed)
+			}.resume()
+		return publisher.asObservable()
+	}
+	
+	func getHilights(of user: ISUser)-> Observable<[ISHilight]> {
+		let publisher = PublishSubject<[ISHilight]>()
+		
+		guard let secret = secret else { return publisher.asObservable()}
+		
+		Endpoint.Media.Stories.highlights(for: user.identity)
+			.unlocking(with: secret)
+			.task(by: .default, onComplete: {
+				switch $0 {
+					case .success(let data):
+						if let hilights = data.items?.map({$0.toISHilight()}) {
+							publisher.on(.next(hilights))
+						}
+					case .failure(let error): publisher.on(.error(error))
+				}
+				publisher.on(.completed)
+			})
+			.resume()
+		
+		return publisher.asObservable()
+	}
+	
 }
