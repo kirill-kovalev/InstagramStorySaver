@@ -21,6 +21,7 @@ struct ISMedia {
 	var identity: String
 	
 	struct Content {
+		var date: Date?
 		var thumb: URL
 		var link: URL
 		var type: ContentType

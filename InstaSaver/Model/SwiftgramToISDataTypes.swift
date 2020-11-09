@@ -44,7 +44,7 @@ extension Media {
 					   owner: user,
 					   date: self.expiringAt ?? self.takenAt ?? Date(),
 					   description: self.caption?.text,
-					   identity: self.identifier)
+					   identity: self.identifier ?? "")
 
 	}
 }
@@ -57,9 +57,15 @@ extension User {
 extension TrayItem {
 	func toISHilight() -> ISHilight {
 		let user = self.user?.toISUser()
-		let content = self.items?.map(\.content).flatMap {$0.ISContent()}
-	
-		let thumb = self.cover?.toISMedia().content.first?.thumb ?? user?.avatar ?? content?.first?.thumb
+		let content = self.items?.flatMap { media ->  [ISMedia.Content] in
+			media.content.ISContent().map {
+				var content = $0
+				content.date = media.expiringAt ?? media.takenAt
+				return content
+			}
+		}
+
+		let thumb = self.cover?.toISMedia().content.first?.thumb ?? content?.first?.thumb ?? user?.avatar
 		
 		return ISHilight(content: content ?? [],
 						 thumb: thumb,
