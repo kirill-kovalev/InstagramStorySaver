@@ -18,7 +18,7 @@ class ISapi {
 	private var secret: Secret? { secretObservable.value }
 	private var secretObservable = BehaviorRelay<Secret?>(value: nil)
 	
-	private var authPublish = ReplaySubject<Bool>.create(bufferSize: 3)
+	private var authPublish = ReplaySubject<Bool>.create(bufferSize: 30)
 	lazy var needsAuth = authPublish.asObservable()
 	
 	private let bag = DisposeBag()
@@ -146,25 +146,20 @@ class ISapi {
 	func getTray() -> Observable<[ISHilight]> {
 		let publisher = PublishSubject<[ISHilight]>()
 		
-		print("start")
 		guard let secret = secret else { return Observable<[ISHilight]>.just([])}//
-		print("secret")
+		
 		Endpoint.Media.Stories.followed
 			.unlocking(with: secret)
 			.task(by: .default) {
-				print("loaded")
 				switch $0 {
 					case .success(let data):
 						if let tray = data.items?
 							.map({$0.toISHilight()})
-//							.filter({ !$0.content.isEmpty })
 						{
 							publisher.on(.next(tray))
 						}
 						
-					case .failure(let err):
-						print("tray", err)
-						publisher.on(.error(err))
+					case .failure(let err): publisher.on(.error(err))
 				}
 				publisher.on(.completed)
 			}.resume()
