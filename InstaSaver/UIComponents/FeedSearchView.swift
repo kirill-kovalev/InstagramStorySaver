@@ -62,7 +62,8 @@ class FeedSearchView: UIView, ContentViewProtocol {
 	
 	private let backButton: UIButton = {
 		let btn = UIButton(frame: .zero)
-		btn.setImage(Asset.Icons.arrowBack.image, for: .normal)
+		btn.setImage(Asset.Icons.arrowBack.image.withRenderingMode(.alwaysTemplate), for: .normal)
+		btn.imageView?.tintColor = Asset.Colors.black4.color
 		btn.imageView?.snp.removeConstraints()
 		btn.imageView?.snp.makeConstraints({ (make) in
 			make.height.equalTo(28)

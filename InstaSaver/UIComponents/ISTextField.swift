@@ -12,11 +12,13 @@ class ISTextField: UIView {
 		let tf = UITextField(frame: .zero)
 		tf.font = .searchfield
 		tf.backgroundColor = .clear
+		tf.textColor = Asset.Colors.black.color
 		return tf
 	}()
 	let btn: UIButton = {
 		let btn = UIButton(frame: .zero)
-		btn.setImage(Asset.Icons.search.image, for: .normal)
+		btn.setImage(Asset.Icons.search.image.withRenderingMode(.alwaysTemplate), for: .normal)
+		btn.imageView?.tintColor = Asset.Colors.black4.color
 		return btn
 	}()
 	convenience init() {
@@ -53,7 +55,7 @@ class ISTextField: UIView {
 	@objc private func setupActive() {
 		UIView.animate(withDuration: 0.3) {
 			self.backgroundColor = Asset.Colors.white.color
-			self.layer.borderColor = Asset.Colors.black5.color.withAlphaComponent(0.24).cgColor
+			self.layer.borderColor = Asset.Colors.black5.color.withAlphaComponent(0.3).cgColor
 			self.layer.shadowColor = UIColor(displayP3Red: 32/256, green: 32/256, blue: 47/256, alpha: 0.08).cgColor
 			self.layer.shadowRadius = 16
 			self.layer.shadowOpacity = 1
@@ -68,6 +70,15 @@ class ISTextField: UIView {
 			
 			self.layer.shadowRadius = 1
 			self.layer.shadowOffset = CGSize(width: 0, height: 0)
+		}
+	}
+	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+		super.traitCollectionDidChange(previousTraitCollection)
+		
+		if self.isFocused {
+			setupActive()
+		} else {
+			setupInactive()
 		}
 	}
 }
