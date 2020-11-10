@@ -50,8 +50,8 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(PreviewCell.self)", for: indexPath)
 		let element = self.content[indexPath.item]
 		if let cell = cell as? PreviewCell {
-			URLSession.shared.rx
-				.data(request: URLRequest(url: element.thumb))
+			ISNetwork
+				.data(element.thumb)
 				.map(UIImage.init)
 				.bind(to: cell.container.rx.image)
 				.disposed(by: bag)

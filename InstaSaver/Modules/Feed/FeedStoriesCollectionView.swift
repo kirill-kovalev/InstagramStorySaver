@@ -50,8 +50,8 @@ class FeedStoriesCollectionView:AutoSizedCollectionView {
 		stories.bind(to: self.rx.items(cellIdentifier: "cell", cellType: Cell.self)) { [weak self] _, data, cell in
 			if let self = self,
 			   let url = data.owner?.avatar ?? data.thumb {
-				URLSession.shared.rx
-					.data(request: URLRequest(url: url))
+				ISNetwork
+					.data(url)
 					.compactMap(UIImage.init)
 					.bind(to: cell.avatarView.rx.image)
 					.disposed(by: self.bag)

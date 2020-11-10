@@ -36,8 +36,8 @@ class FeedVC: ViewController<FeedView>, PreviewDisplayDelegate {
 				cell.timestamp.text = " @\(user.username)"
 				
 				if let url = user.avatar {
-					URLSession.shared.rx
-						.data(request: URLRequest(url: url))
+					ISNetwork
+						.data(url)
 						.map(UIImage.init)
 						.observeOn(MainScheduler.instance)
 						.bind(to: cell.avatar.rx.image)

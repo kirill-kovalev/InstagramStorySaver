@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A7D3846FCC8B8D354045493 /* Pods_InstaSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543AD59F60B5F1042C654948 /* Pods_InstaSaver.framework */; };
+		5D26FB68255B04A9008F070A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D26FB67255B04A9008F070A /* NetworkManager.swift */; };
 		5D443D42255822AB0075741E /* SwiftagramCrypto in Frameworks */ = {isa = PBXBuildFile; productRef = 5D443D41255822AB0075741E /* SwiftagramCrypto */; };
 		5D443D44255822AB0075741E /* Swiftagram in Frameworks */ = {isa = PBXBuildFile; productRef = 5D443D43255822AB0075741E /* Swiftagram */; };
 		5D443D642558234F0075741E /* SFProDisplay-Ultralight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D443D472558234F0075741E /* SFProDisplay-Ultralight.ttf */; };
@@ -79,6 +80,7 @@
 /* Begin PBXFileReference section */
 		1B646CBA815BA7B6E6F6038D /* Pods-InstaSaver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaSaver.release.xcconfig"; path = "Target Support Files/Pods-InstaSaver/Pods-InstaSaver.release.xcconfig"; sourceTree = "<group>"; };
 		543AD59F60B5F1042C654948 /* Pods_InstaSaver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaSaver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D26FB67255B04A9008F070A /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		5D443D472558234F0075741E /* SFProDisplay-Ultralight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Ultralight.ttf"; sourceTree = "<group>"; };
 		5D443D482558234F0075741E /* SFProDisplay-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-RegularItalic.ttf"; sourceTree = "<group>"; };
 		5D443D492558234F0075741E /* SFProDisplay-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-SemiboldItalic.ttf"; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 		5D5B73EE253DE2BB00B8FD3B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5D26FB67255B04A9008F070A /* NetworkManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				5D443D972558245A0075741E /* SelfSizingCollectionView.swift in Sources */,
 				5D443D8A255824170075741E /* FontsExtension.swift in Sources */,
 				5D443D952558245A0075741E /* ISTextField.swift in Sources */,
+				5D26FB68255B04A9008F070A /* NetworkManager.swift in Sources */,
 				5D443DFF2558A83D0075741E /* PreviewDisplayProtocol.swift in Sources */,
 				5D443DED25583E940075741E /* FeedViewModel.swift in Sources */,
 				5D443DA5255824F80075741E /* FeedView.swift in Sources */,
