@@ -36,6 +36,7 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 	var content: [ISMedia.Content] = [] {
 		didSet {
 			self.collectionView.reloadData()
+			self.collection.pageIndicator.numberOfPages = content.count
 		}
 	}
 
@@ -61,29 +62,10 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		collectionView.frame.size
 	}
-
+	
+	override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		let page = scrollView.contentOffset.x/scrollView.bounds.width
+		self.collection.pageIndicator.currentPage = Int(page)
+	}
 }
 
-class PreviewCell: UICollectionViewCell {
-	let container: UIImageView = {
-		let v = UIImageView(frame: .zero)
-		v.contentMode = .scaleAspectFit
-		return v
-	}()
-	
-	required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-	override init(frame: CGRect) {
-		super.init(frame: frame)
-		self.contentView.addSubview(container)
-		contentView.snp.makeConstraints {
-			$0.edges.equalToSuperview()
-			$0.edges.equalTo(container)
-		}
-	}
-	
-	override func layoutSubviews() {
-		super.layoutSubviews()
-		container.frame = contentView.frame
-	}
-	
-}

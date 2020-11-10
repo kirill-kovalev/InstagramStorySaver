@@ -14,6 +14,14 @@ class PreviewCollectionView: UICollectionView {
 		btn.imageView?.tintColor = Asset.Colors.purple.color
 		return btn
 	}()
+	
+	let pageIndicator: UIPageControl = {
+		let c = UIPageControl(frame: .zero)
+		c.hidesForSinglePage = true
+		c.pageIndicatorTintColor = UIColor.white.withAlphaComponent(0.3)
+		c.currentPageIndicatorTintColor = Asset.Colors.purple.color
+		return c
+	}()
 		
 	required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 	init() {
@@ -27,6 +35,7 @@ class PreviewCollectionView: UICollectionView {
 	}
 	
 	private func addViews() {
+		self.addSubview(pageIndicator)
 		self.addSubview(backButton)
 	}
 	private func setupConstraints() {
@@ -35,6 +44,34 @@ class PreviewCollectionView: UICollectionView {
 			make.left.equalTo(frameLayoutGuide).offset(30)
 			make.top.equalTo(safeAreaLayoutGuide).offset(20)
 		}
+		pageIndicator.snp.makeConstraints { (make) in
+			make.centerX.equalTo(frameLayoutGuide)
+			make.bottom.equalTo(frameLayoutGuide).inset(10)
+		}
+	}
+	
+}
+
+class PreviewCell: UICollectionViewCell {
+	let container: UIImageView = {
+		let v = UIImageView(frame: .zero)
+		v.contentMode = .scaleAspectFit
+		return v
+	}()
+	
+	required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		self.contentView.addSubview(container)
+		contentView.snp.makeConstraints {
+			$0.edges.equalToSuperview()
+			$0.edges.equalTo(container)
+		}
+	}
+	
+	override func layoutSubviews() {
+		super.layoutSubviews()
+		container.frame = contentView.frame
 	}
 	
 }
