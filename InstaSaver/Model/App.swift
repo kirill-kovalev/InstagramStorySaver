@@ -116,6 +116,7 @@ class ISapi {
 							allPosts.append(contentsOf: posts)
 							publisher.on(.next(allPosts))
 						}
+						publisher.on(.next(allPosts))
 					case .failure(let error): publisher.on(.error(error))
 				}
 			})
