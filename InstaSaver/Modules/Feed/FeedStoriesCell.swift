@@ -39,7 +39,8 @@ class StoriesCell: UITableViewCell {
 		
 		collectionView.snp.makeConstraints { (make) in
 			make.left.right.equalToSuperview()
-			make.height.equalTo(collectionView.snp.width).dividedBy(3)
+			make.height.greaterThanOrEqualTo(117)
+			make.height.greaterThanOrEqualTo(collectionView.snp.width).dividedBy(3)
 		}
 	}
 }
