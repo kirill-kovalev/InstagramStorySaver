@@ -52,10 +52,7 @@ class ISapi {
 	func searchUser(query: String)-> Observable<[ISUser]> {
 		let publisher = PublishSubject<[ISUser]>()
 		publisher.on(.next([]))
-		guard let secret = secret else {
-			publisher.on(.completed)
-			return publisher.asObservable()
-		}
+		guard let secret = secret else { return Observable<[ISUser]>.just([])}
 		
 		Endpoint.User.all(matching: query)
 			.unlocking(with: secret)
@@ -77,7 +74,7 @@ class ISapi {
 	func getFriends() -> Observable<[ISUser]> {
 		let publisher = PublishSubject<[ISUser]>()
 		
-		guard let secret = secret else { return publisher.asObservable()}
+		guard let secret = secret else { return Observable<[ISUser]>.just([])}
 		
 		let cache = [ISUser]()
 		publisher.on(.next(cache))
@@ -101,7 +98,7 @@ class ISapi {
 	func getPosts(of user: ISUser)-> Observable<[ISMedia]> {
 		let publisher = PublishSubject<[ISMedia]>()
 		
-		guard let secret = secret else { return publisher.asObservable()}
+		guard let secret = secret else { return Observable<[ISMedia]>.just([])}
 		
 		let cache = [ISMedia]()
 		publisher.on(.next(cache))
@@ -129,7 +126,7 @@ class ISapi {
 	func getStories(of user: ISUser) -> Observable<ISHilight> {
 		let publisher = PublishSubject<ISHilight>()
 		
-		guard let secret = secret else { return publisher.asObservable()}
+		guard let secret = secret else { return Observable<ISHilight>.just(ISHilight.empty)}
 
 		Endpoint.Media.Stories.owned(by: user.identity)
 			.unlocking(with: secret)
@@ -146,17 +143,22 @@ class ISapi {
 		return publisher.asObservable()
 	}
 	
-	func getTray(of user: ISUser) -> Observable<[ISHilight]> {
+	func getTray() -> Observable<[ISHilight]> {
 		let publisher = PublishSubject<[ISHilight]>()
+		
 		print("start")
-		guard let secret = secret else { return publisher.asObservable()}//
+		guard let secret = secret else { return Observable<[ISHilight]>.just([])}//
 		print("secret")
 		Endpoint.Media.Stories.followed
-			.unlocking(with: secret).task(by: .default) {
+			.unlocking(with: secret)
+			.task(by: .default) {
 				print("loaded")
 				switch $0 {
 					case .success(let data):
-						if let tray = data.items?.map({$0.toISHilight()}) {
+						if let tray = data.items?
+							.map({$0.toISHilight()})
+//							.filter({ !$0.content.isEmpty })
+						{
 							publisher.on(.next(tray))
 						}
 						
@@ -166,7 +168,29 @@ class ISapi {
 				}
 				publisher.on(.completed)
 			}.resume()
-		return publisher.asObservable()
+		return publisher.observeOn(MainScheduler.instance).asObservable()
+	}
+	
+	func getStories(for users: [ISUser]) -> Observable<[ISHilight]> {
+		let publisher = PublishSubject<[ISHilight]>()
+		guard let secret = secret else { return Observable<[ISHilight]>.just([])}
+		
+		Endpoint.Media.Stories.owned(by: users.map(\.identity))
+			.unlocking(with: secret)
+			.task {
+				print("loaded")
+				switch $0 {
+					case .success(let data):
+						if let tray = data.items?.map({$1.toISHilight()}) {
+							publisher.on(.next(tray))
+						}
+						
+					case .failure(let err):
+						publisher.on(.error(err))
+				}
+				publisher.on(.completed)
+			}.resume()
+		return publisher.observeOn(MainScheduler.instance).asObservable()
 	}
 	
 	func getHilights(of user: ISUser)-> Observable<[ISHilight]> {

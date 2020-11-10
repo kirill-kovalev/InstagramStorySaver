@@ -11,12 +11,12 @@ import RxCocoa
 import RxDataSources
 
 enum SectionTypes {
-	case stories([ISHilight])
+	case stories(Observable<[ISHilight]>)
 	case user(ISUser)
 }
 typealias FeedTableSection = SectionModel<String, SectionTypes>
 
-class FeedVC: ViewController<FeedView> {
+class FeedVC: ViewController<FeedView>, PreviewDisplayDelegate {
 	let viewModel = FeedViewModel()
 	
 	lazy var dataSource = RxTableViewSectionedReloadDataSource<FeedTableSection> {[weak self] (_, tableView, indexPath, sectionItem) -> UITableViewCell in
@@ -25,7 +25,8 @@ class FeedVC: ViewController<FeedView> {
 		switch sectionItem {
 			case .stories(let hilights):
 				let cell = tableView.dequeueReusableCell(withIdentifier: "StoriesCell", for: indexPath) as! StoriesCell
-				
+				hilights.bind(to: cell.collectionView.stories).disposed(by: self.bag)
+				cell.collectionView.previewDelegate = self
 				return cell
 
 			case .user(let user):
@@ -76,8 +77,15 @@ class FeedVC: ViewController<FeedView> {
 	let bag = DisposeBag()
 	
 	private func bind(output: FeedViewModel.Output) {
-		output.users.map { (users) in
-			return [FeedTableSection(model: "users", items: users.map {SectionTypes.user($0)})]
+		Observable.combineLatest(
+			output.users,
+			output.shouldShowStories
+		)
+		.map { (users, showStories) in
+			return showStories ? [
+				FeedTableSection(model: "stories", items: [ SectionTypes.stories(output.stories) ]),
+				FeedTableSection(model: "users", items: users.map {SectionTypes.user($0)})
+			] : [FeedTableSection(model: "users", items: users.map {SectionTypes.user($0)})]
 		}.bind(to: self.rootView.contentTable.rx.items(dataSource: dataSource))
 		.disposed(by: bag)
 		

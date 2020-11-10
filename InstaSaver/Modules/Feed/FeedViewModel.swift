@@ -20,6 +20,8 @@ class FeedViewModel {
 	var shouldShowStories = BehaviorRelay<Bool>(value: true)
 	var logoutTrigger = PublishRelay<Void>()
 	
+	var hilights = ReplaySubject<[ISHilight]>.create(bufferSize: 2)
+	
 	var userlist: [ISUser] = []
 	func transform(input: Input) -> Output {
 		let users = input.searchQuery.flatMap { (query) -> Observable<[ISUser]> in
@@ -45,7 +47,6 @@ class FeedViewModel {
 		ISAPI.needsAuth.compactMap {$0 ? Void() : nil}.bind(to: self.logoutTrigger).disposed(by: bag)
 		
 		let userPresent = input.displayUserTrigger.compactMap {[weak self] (indexPath) -> ISUser? in
-//			if indexPath.section
 			if let self = self,
 			   indexPath.row >= 0,
 			   indexPath.row < self.userlist.count {
@@ -55,9 +56,34 @@ class FeedViewModel {
 			}
 		}
 		
+		shouldShowStories
+			.flatMap { (_) in ISAPI.getTray() }
+			.bind(to: self.hilights)
+			.disposed(by: bag)
+		
+
+		let loadedHilights = hilights
+			.distinctUntilChanged()
+			.map { (hilights) -> [ISHilight] in
+			hilights.filter {!$0.content.isEmpty}
+		}
+		let extraLoadedHilights = hilights
+			.distinctUntilChanged()
+			.compactMap { (hilights) in
+			hilights.filter {$0.content.isEmpty}.compactMap(\.owner)
+		}
+		.filter {!$0.isEmpty}
+		.flatMap {ISAPI.getStories(for: $0)}
+		
+		let displayHilights = Observable.combineLatest(
+			loadedHilights,
+			extraLoadedHilights
+		).map {$0+$1}
+		.filter {!$0.isEmpty}
+		
 		return Output(
 			shouldShowStories: self.shouldShowStories.asObservable(),
-			stories: Observable<[ISHilight]>.just([]),
+			stories: displayHilights,
 			users: users,
 			logoutTrigger: self.logoutTrigger.do(onNext: {}),
 			userPresentTrigger: userPresent

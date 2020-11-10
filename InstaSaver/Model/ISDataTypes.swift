@@ -8,7 +8,7 @@
 import Foundation
 
 struct ISMedia {
-	enum ContentType {
+	enum ContentType: Equatable {
 		case photo
 		case video
 	}
@@ -20,23 +20,26 @@ struct ISMedia {
 	
 	var identity: String
 	
-	struct Content {
+	struct Content: Equatable {
 		var date: Date?
 		var thumb: URL
 		var link: URL
 		var type: ContentType
 	}
 }
-struct ISUser {
+struct ISUser: Equatable {
 	var username: String
 	var fullName: String?
 	var avatar: URL?
 	var identity: String
 }
 
-struct ISHilight {
+struct ISHilight: Equatable {
+	static let empty = ISHilight(content: [], thumb: nil, owner: nil, identity: "")
+	
 	var content: [ISMedia.Content]
 	var thumb: URL?
 	var owner: ISUser?
 	var identity: String
+	
 }

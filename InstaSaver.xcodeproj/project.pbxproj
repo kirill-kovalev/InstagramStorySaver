@@ -51,7 +51,7 @@
 		5D443DA2255824F80075741E /* FeedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443D9B255824F80075741E /* FeedItemCell.swift */; };
 		5D443DA3255824F80075741E /* FeedStoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443D9C255824F80075741E /* FeedStoriesCell.swift */; };
 		5D443DA5255824F80075741E /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443D9E255824F80075741E /* FeedView.swift */; };
-		5D443DA6255824F80075741E /* StoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DA0255824F80075741E /* StoriesViewController.swift */; };
+		5D443DA6255824F80075741E /* FeedStoriesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DA0255824F80075741E /* FeedStoriesCollectionView.swift */; };
 		5D443DD5255827F20075741E /* HorizontalScrollableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DCC255827F20075741E /* HorizontalScrollableCell.swift */; };
 		5D443DD6255827F20075741E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DCD255827F20075741E /* ProfileView.swift */; };
 		5D443DD7255827F20075741E /* UserPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D443DCE255827F20075741E /* UserPageHeaderView.swift */; };
@@ -120,7 +120,7 @@
 		5D443D9B255824F80075741E /* FeedItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItemCell.swift; sourceTree = "<group>"; };
 		5D443D9C255824F80075741E /* FeedStoriesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedStoriesCell.swift; sourceTree = "<group>"; };
 		5D443D9E255824F80075741E /* FeedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
-		5D443DA0255824F80075741E /* StoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesViewController.swift; sourceTree = "<group>"; };
+		5D443DA0255824F80075741E /* FeedStoriesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedStoriesCollectionView.swift; sourceTree = "<group>"; };
 		5D443DCC255827F20075741E /* HorizontalScrollableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalScrollableCell.swift; sourceTree = "<group>"; };
 		5D443DCD255827F20075741E /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		5D443DCE255827F20075741E /* UserPageHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPageHeaderView.swift; sourceTree = "<group>"; };
@@ -219,19 +219,11 @@
 				5D443DEC25583E940075741E /* FeedViewModel.swift */,
 				5D443D9A255824F80075741E /* FeedController.swift */,
 				5D443D9B255824F80075741E /* FeedItemCell.swift */,
-				5D443D9C255824F80075741E /* FeedStoriesCell.swift */,
 				5D443D9E255824F80075741E /* FeedView.swift */,
-				5D443D9F255824F80075741E /* StoriesViewController */,
+				5D443D9C255824F80075741E /* FeedStoriesCell.swift */,
+				5D443DA0255824F80075741E /* FeedStoriesCollectionView.swift */,
 			);
 			path = Feed;
-			sourceTree = "<group>";
-		};
-		5D443D9F255824F80075741E /* StoriesViewController */ = {
-			isa = PBXGroup;
-			children = (
-				5D443DA0255824F80075741E /* StoriesViewController.swift */,
-			);
-			path = StoriesViewController;
 			sourceTree = "<group>";
 		};
 		5D443DCB255827F20075741E /* Profile */ = {
@@ -448,7 +440,6 @@
 			);
 			mainGroup = 5D5B73C8253DE21500B8FD3B;
 			packageReferences = (
-				5DA8889F2551B8F90057DB07 /* XCRemoteSwiftPackageReference "SwiftyInsta" */,
 				5D443D40255822AB0075741E /* XCRemoteSwiftPackageReference "Swiftagram" */,
 			);
 			productRefGroup = 5D5B73D2253DE21500B8FD3B /* Products */;
@@ -575,7 +566,7 @@
 				5D443D872558237C0075741E /* Assets.swift in Sources */,
 				5D443DF6255870440075741E /* ProfileViewModel.swift in Sources */,
 				5D443DDA255827F20075741E /* ProfileViewController.swift in Sources */,
-				5D443DA6255824F80075741E /* StoriesViewController.swift in Sources */,
+				5D443DA6255824F80075741E /* FeedStoriesCollectionView.swift in Sources */,
 				5D443D922558245A0075741E /* ISAvatarView.swift in Sources */,
 				5D5B73D5253DE21500B8FD3B /* AppDelegate.swift in Sources */,
 				5D443D972558245A0075741E /* SelfSizingCollectionView.swift in Sources */,
@@ -740,7 +731,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FCXJCDV375;
 				INFOPLIST_FILE = InstaSaver/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -761,7 +752,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FCXJCDV375;
 				INFOPLIST_FILE = InstaSaver/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -803,14 +794,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.2.1;
-			};
-		};
-		5DA8889F2551B8F90057DB07 /* XCRemoteSwiftPackageReference "SwiftyInsta" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/TheM4hd1/SwiftyInsta.git";
-			requirement = {
-				branch = master;
-				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

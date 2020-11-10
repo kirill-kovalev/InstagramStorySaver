@@ -25,7 +25,7 @@ class StoriesCell: UITableViewCell {
 		setup()
 	}
 	
-	let stroriesController = StoriesViewController()
+	let collectionView = FeedStoriesCollectionView()
 	
 	private func setup() {
 		self.contentView.backgroundColor = .clear
@@ -34,12 +34,12 @@ class StoriesCell: UITableViewCell {
 		contentView.addSubview(vstack)
 		vstack.snp.makeConstraints { $0.edges.equalTo(contentView) }
 		vstack.addArrangedSubview(ISSectionHeaderView(title: "Stories"))
-		vstack.addArrangedSubview(stroriesController.view)
+		vstack.addArrangedSubview(collectionView)
 		vstack.addArrangedSubview(ISSectionHeaderView(title: "All friends"))
 		
-		stroriesController.view.snp.makeConstraints { (make) in
-			make.height.equalTo(147)
+		collectionView.snp.makeConstraints { (make) in
 			make.left.right.equalToSuperview()
+			make.height.equalTo(collectionView.snp.width).dividedBy(3)
 		}
 	}
 }
