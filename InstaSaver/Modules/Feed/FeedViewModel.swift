@@ -18,7 +18,7 @@ class FeedViewModel {
 	let bag = DisposeBag()
 	
 	var shouldShowStories = BehaviorRelay<Bool>(value: true)
-	var logoutTrigger = PublishRelay<Void>()
+	var logoutTrigger = ReplaySubject<Void>.create(bufferSize: 1)
 	
 	var hilights = ReplaySubject<[ISHilight]>.create(bufferSize: 2)
 	
@@ -44,7 +44,10 @@ class FeedViewModel {
 		input.logoutButtonTap
 			.do(onNext: {_ in ISAPI.logout()})
 			.bind(to: self.logoutTrigger).disposed(by: bag)
-		ISAPI.needsAuth.compactMap {$0 ? Void() : nil}.bind(to: self.logoutTrigger).disposed(by: bag)
+		
+		ISAPI.needsAuth.compactMap {$0 ? Void() : nil}
+			.bind(to: logoutTrigger)
+			.disposed(by: bag)
 		
 		let userPresent = input.displayUserTrigger.compactMap {[weak self] (indexPath) -> ISUser? in
 			if let self = self,
@@ -61,7 +64,6 @@ class FeedViewModel {
 			.bind(to: self.hilights)
 			.disposed(by: bag)
 		
-
 		let loadedHilights = hilights
 			.distinctUntilChanged()
 			.map { (hilights) -> [ISHilight] in

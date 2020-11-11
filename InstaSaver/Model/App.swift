@@ -18,8 +18,8 @@ class ISapi {
 	private var secret: Secret? { secretObservable.value }
 	private var secretObservable = BehaviorRelay<Secret?>(value: nil)
 	
-	private var authPublish = ReplaySubject<Bool>.create(bufferSize: 30)
-	lazy var needsAuth = authPublish.asObservable()
+	private var authPublish = ReplaySubject<Bool>.create(bufferSize: 1)
+	var needsAuth: Observable<Bool> {authPublish.asObservable()}
 	
 	private let bag = DisposeBag()
 	

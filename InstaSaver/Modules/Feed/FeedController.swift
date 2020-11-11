@@ -90,7 +90,10 @@ class FeedVC: ViewController<FeedView>, PreviewDisplayDelegate {
 		.disposed(by: bag)
 		
 		output.logoutTrigger.subscribe(onNext: { [weak self] in
-			self?.present(LoginViewController(), animated: true, completion: nil)
+			let vc = LoginViewController()
+			vc.modalPresentationStyle = .overFullScreen
+			vc.modalTransitionStyle = .flipHorizontal
+			self?.present(vc, animated: true, completion: nil)
 		}).disposed(by: bag)
 		
 		output.userPresentTrigger.subscribe(onNext: { [weak self] user in
