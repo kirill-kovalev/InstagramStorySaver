@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import AVKit
 
 class PreviewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 	let bag = DisposeBag()
@@ -30,8 +31,12 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 															self?.dismiss(animated: true, completion: nil)
 													})
 													.disposed(by: bag)
-		
+
     }
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		(self.collection.cellForItem(at: IndexPath(row: 0, section: 0)) as? PreviewCell)?.player?.play()
+	}
 	
 	var content: [ISMedia.Content] = [] {
 		didSet {
@@ -39,7 +44,8 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 			self.collection.pageIndicator.numberOfPages = content.count
 		}
 	}
-
+	var cache: [IndexPath: URL] = [:]
+	
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {1}
@@ -55,6 +61,16 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 				.map(UIImage.init)
 				.bind(to: cell.container.rx.image)
 				.disposed(by: bag)
+			if let url = cache[indexPath] {
+				cell.player = AVPlayer(url: url)
+			}
+			ISNetwork.download(element)
+				.subscribe(onNext: { [weak self] url in
+					self?.cache[indexPath] = url
+					cell.player = AVPlayer(url: url)
+				})
+				.disposed(by: bag)
+			
 		}
         return cell
     }
@@ -63,9 +79,19 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 		collectionView.frame.size
 	}
 	
+	var cureentPage: Int {Int(collection.contentOffset.x/collection.bounds.width)}
+	
 	override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		let page = scrollView.contentOffset.x/scrollView.bounds.width
-		self.collection.pageIndicator.currentPage = Int(page)
+		self.collection.pageIndicator.currentPage = cureentPage
+		self.collection.visibleCells.compactMap {$0 as? PreviewCell}.enumerated().forEach { (index, cell) in
+			if abs(index - cureentPage) > 1 {
+				cell.player?.seek(to: .zero)
+			}
+			cell.player?.pause()
+		}
+		if let cell = collection.cellForItem(at: IndexPath(item: Int(cureentPage), section: 0)) as? PreviewCell {
+			cell.player?.play()
+		}
 	}
+	
 }
-

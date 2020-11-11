@@ -6,12 +6,19 @@
 //
 
 import UIKit
+import AVKit
 
 class PreviewCollectionView: UICollectionView {
 	let backButton: UIButton = {
 		let btn = UIButton(frame: .zero)
 		btn.setImage(Asset.Icons.arrowBack.image.withRenderingMode(.alwaysTemplate), for: .normal)
 		btn.imageView?.tintColor = Asset.Colors.purple.color
+		return btn
+	}()
+	
+	let downloadButton: UIButton = {
+		let btn = UIButton(frame: .zero)
+		btn.setImage(Asset.Icons.download.image, for: .normal)
 		return btn
 	}()
 	
@@ -59,20 +66,40 @@ class PreviewCell: UICollectionViewCell {
 		v.contentMode = .scaleAspectFit
 		return v
 	}()
+	private let playerLayer = AVPlayerLayer()
+	private var looper: AVPlayerLooper?
+	var player: AVPlayer? {
+		didSet {
+			oldValue?.pause()
+			if let player = player,
+			   let item = player.currentItem?.copy() as? AVPlayerItem {
+				let queuePlayer = AVQueuePlayer(playerItem: item)
+				self.looper = AVPlayerLooper(player: queuePlayer, templateItem: item)
+				playerLayer.isHidden = false
+				playerLayer.player = player
+				player.externalPlaybackVideoGravity = .resizeAspect
+			} else {
+				playerLayer.isHidden = true
+			}
+		}
+	}
 	
 	required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		self.contentView.addSubview(container)
+		self.container.layer.addSublayer(playerLayer)
 		contentView.snp.makeConstraints {
 			$0.edges.equalToSuperview()
 			$0.edges.equalTo(container)
 		}
+
 	}
 	
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		container.frame = contentView.frame
+		playerLayer.frame = container.layer.frame
 	}
 	
 }
