@@ -254,9 +254,9 @@
 		5D443DFA2558A7690075741E /* Preview */ = {
 			isa = PBXGroup;
 			children = (
-				5D443DFE2558A83D0075741E /* PreviewDisplayProtocol.swift */,
 				5D443DFB2558A7690075741E /* PreviewController.swift */,
 				5D443E02255946C70075741E /* PreviewCollectionView.swift */,
+				5D443DFE2558A83D0075741E /* PreviewDisplayProtocol.swift */,
 			);
 			path = Preview;
 			sourceTree = "<group>";
@@ -733,7 +733,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = FCXJCDV375;
 				INFOPLIST_FILE = InstaSaver/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -755,7 +755,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = FCXJCDV375;
 				INFOPLIST_FILE = InstaSaver/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
