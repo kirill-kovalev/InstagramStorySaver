@@ -30,6 +30,7 @@ class PreviewCollectionView: UICollectionView {
 		layout.scrollDirection = .horizontal
 		layout.minimumLineSpacing = 0
 		self.isPagingEnabled = true
+		self.showsHorizontalScrollIndicator = false
 		addViews()
 		setupConstraints()
 	}
