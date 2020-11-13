@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import AVKit
 
-class PreviewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class PreviewController: UICollectionViewController, UICollectionViewDelegateFlowLayout,ExportDelegateProtocol {
 	let bag = DisposeBag()
 	
 	let collection = PreviewCollectionView()
@@ -26,7 +26,7 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 
         // Register cell classes
 		self.collectionView.register(PreviewCell.self, forCellWithReuseIdentifier: "\(PreviewCell.self)")
-		self.modalPresentationStyle = .overFullScreen
+//		self.modalPresentationStyle = .overFullScreen
 		self.collection.backButton.rx.tap.subscribe(onNext: { [weak self] in
 															self?.dismiss(animated: true, completion: nil)
 													})
@@ -56,18 +56,20 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(PreviewCell.self)", for: indexPath)
 		let element = self.content[indexPath.item]
 		if let cell = cell as? PreviewCell {
+			cell.exportDelegate = self
 			ISNetwork
 				.data(element.thumb)
 				.map(UIImage.init)
 				.bind(to: cell.container.rx.image)
 				.disposed(by: bag)
 			if let url = cache[indexPath] {
-				cell.player = AVPlayer(url: url)
+				cell.url = url
 			}
 			ISNetwork.download(element)
 				.subscribe(onNext: { [weak self] url in
 					self?.cache[indexPath] = url
-					cell.player = AVPlayer(url: url)
+					cell.url = url
+					cell.downloadButton.isHidden = false
 				})
 				.disposed(by: bag)
 			
