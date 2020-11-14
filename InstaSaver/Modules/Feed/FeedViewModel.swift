@@ -45,7 +45,9 @@ class FeedViewModel {
 			.do(onNext: {_ in ISAPI.logout()})
 			.bind(to: self.logoutTrigger).disposed(by: bag)
 		
-		ISAPI.needsAuth.compactMap {$0 ? Void() : nil}
+		ISAPI.needsAuth
+			.do()
+			.compactMap {$0 ? Void() : nil}
 			.bind(to: logoutTrigger)
 			.disposed(by: bag)
 		

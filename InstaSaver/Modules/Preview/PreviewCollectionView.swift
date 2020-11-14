@@ -86,24 +86,15 @@ class PreviewCell: UICollectionViewCell {
 			if let url = url {
 				downloadButton.isHidden = false
 				downloadIndidcator.isHidden = true
-				self.player = AVPlayer(url: url)
+				self.player = AVQueuePlayer(url: url)
+				playerLayer.player = self.player
 			} else {
 				downloadButton.isHidden = true
 				downloadIndidcator.isHidden = false
 			}
 		}
 	}
-	var player: AVPlayer? {
-		didSet {
-			oldValue?.pause()
-			if let player = player {
-				playerLayer.isHidden = false
-				playerLayer.player = player
-			} else {
-				playerLayer.isHidden = true
-			}
-		}
-	}
+	var player: AVPlayer? 
 	
 	required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 	override init(frame: CGRect) {
@@ -137,14 +128,27 @@ class PreviewCell: UICollectionViewCell {
 		playerLayer.frame = container.layer.frame
 	}
 	
-	weak var exportDelegate:ExportDelegateProtocol?
+	weak var exportDelegate: ExportDelegateProtocol?
 }
 protocol ExportDelegateProtocol: UIViewController {
-	func export(items:[Any])
+	func export(items: [Any])
 }
 extension ExportDelegateProtocol {
-	func export(items:[Any]){
+	func export(items: [Any]) {
 		let actionVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
-		self.present(actionVC, animated: true, completion: nil)
+		if UserDefaults.standard.bool(forKey: "skip") {
+			self.present(actionVC, animated: true, completion: nil)
+		} else {
+			let alert = UIAlertController(title: nil, message: "Now you can copy and share it in your stories or post!", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+				self.present(actionVC, animated: true, completion: nil)
+			}))
+			alert.addAction(UIAlertAction(title: "Don't remind", style: .default, handler: { (_) in
+				UserDefaults.standard.setValue(true, forKey: "skip")
+				self.present(actionVC, animated: true, completion: nil)
+			}))
+			self.present(alert, animated: true, completion: nil)
+		}
+
 	}
 }

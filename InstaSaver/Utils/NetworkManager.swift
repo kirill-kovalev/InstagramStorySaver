@@ -61,7 +61,7 @@ class ISNetwork {
 							if let data = destURL.lastPathComponent.data(using: .utf8) {
 								cache.setObject(DataContainer(data), forKey: remoteLink.lastPathComponent as NSString)
 							}
-							sleep(1)
+//							sleep(1)
 							publisher.on(.next(destURL))
 						} catch { publisher.on(.error(error)) }
 					}

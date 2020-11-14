@@ -12,7 +12,7 @@ class FeedView: BasicView {
 	let headerTitle: UILabel = {
 		let text = UILabel(frame: .zero)
 		text.font = .header
-		text.text = "Stories Saver"
+		text.text = "Stories Share"
 		text.textColor = Asset.Colors.black.color
 		return text
 	}()

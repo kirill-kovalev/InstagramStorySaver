@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import AVKit
 
-class PreviewController: UICollectionViewController, UICollectionViewDelegateFlowLayout,ExportDelegateProtocol {
+class PreviewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, ExportDelegateProtocol {
 	let bag = DisposeBag()
 	
 	let collection = PreviewCollectionView()
@@ -69,7 +69,13 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 				.subscribe(onNext: { [weak self] url in
 					self?.cache[indexPath] = url
 					cell.url = url
-					cell.downloadButton.isHidden = false
+					
+					if
+						let currentPage = self?.cureentPage,
+						let activeCell = collectionView.cellForItem(at: IndexPath(item: Int(currentPage), section: 0)) as? PreviewCell {
+						activeCell.player?.play()
+					}
+					
 				})
 				.disposed(by: bag)
 			
