@@ -17,16 +17,68 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 	override func loadView() {
 		self.collectionView = collection
 	}
+	var presentFromFrame: CGRect?
+	
+	override func viewWillAppear(_ animated: Bool) {
+		if let frame = presentFromFrame {
+			self.view.frame = frame
+			self.collection.backButton.layer.opacity = 0
+			animate {
+				self.view.frame = UIScreen.main.bounds
+				self.collection.backButton.layer.opacity = 1
+			}
+		} else {
+			super.viewWillAppear(animated)
+		}
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		if let frame = presentFromFrame {
+			self.collection.backButton.layer.opacity = 1
+			animate{
+				self.view.frame = frame
+				self.collection.backButton.layer.opacity = 0
+			}
+		} else {
+			super.viewWillDisappear(animated)
+		}
+	}
+	@objc func panDidPerformed(_ sender: UIPanGestureRecognizer) {
+		let translation = sender.translation(in: self.view)
+		let translX = translation.x/2
+		let translY = translation.y/2
+		
+		let distance = sqrt(pow(translX, 2)+pow(translY, 2))
+		let maxDistance = view.window!.bounds.height/4
+		
+		let scaleFactor: CGFloat = 0.6
+		let scale = 1 - min(scaleFactor*(distance/(maxDistance*3)), scaleFactor)
+		animate {
+			self.view.transform = CGAffineTransform(translationX: translX, y: translY)
+					.concatenating(CGAffineTransform(scaleX: scale, y: scale))
+		}
+		
+		
+		guard sender.state == .ended  else {return}
+		
+		if distance > maxDistance || sender.velocity(in: view).x > 50 {
+			self.dismiss(animated: true, completion: nil)
+		} else {
+			animate{
+				self.view.transform = .identity
+			}
+			
+		}
+	}
+	private func animate(animations: @escaping () -> Void ){
+		UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [], animations: animations, completion: nil)
+	}
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
 		self.collectionView.register(PreviewCell.self, forCellWithReuseIdentifier: "\(PreviewCell.self)")
 //		self.modalPresentationStyle = .overFullScreen
+		self.collection.gesture.addTarget(self, action: #selector(panDidPerformed))
 		self.collection.backButton.rx.tap.subscribe(onNext: { [weak self] in
 															self?.dismiss(animated: true, completion: nil)
 													})
@@ -35,8 +87,10 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
     }
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		(self.collection.cellForItem(at: IndexPath(row: 0, section: 0)) as? PreviewCell)?.player?.play()
+		(self.collection.cellForItem(at: IndexPath(row: 0, section: 0)) as? PreviewCell)?.player.play()
 	}
+	
+	
 	
 	var content: [ISMedia.Content] = [] {
 		didSet {
@@ -73,7 +127,7 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 					if
 						let currentPage = self?.cureentPage,
 						let activeCell = collectionView.cellForItem(at: IndexPath(item: Int(currentPage), section: 0)) as? PreviewCell {
-						activeCell.player?.play()
+						activeCell.player.play()
 					}
 					
 				})
@@ -93,12 +147,12 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 		self.collection.pageIndicator.currentPage = cureentPage
 		self.collection.visibleCells.compactMap {$0 as? PreviewCell}.enumerated().forEach { (index, cell) in
 			if abs(index - cureentPage) > 1 {
-				cell.player?.seek(to: .zero)
+				cell.player.seek(to: .zero)
 			}
-			cell.player?.pause()
+			cell.player.pause()
 		}
 		if let cell = collection.cellForItem(at: IndexPath(item: Int(cureentPage), section: 0)) as? PreviewCell {
-			cell.player?.play()
+			cell.player.play()
 		}
 	}
 	

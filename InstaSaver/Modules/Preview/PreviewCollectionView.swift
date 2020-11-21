@@ -10,6 +10,8 @@ import AVKit
 import Photos
 
 class PreviewCollectionView: UICollectionView {
+	private let gestureZone = UIView(frame: .zero)
+	let gesture = UIPanGestureRecognizer()
 	let backButton: UIButton = {
 		let btn = UIButton(frame: .zero)
 		btn.setImage(Asset.Icons.arrowBack.image.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -38,10 +40,16 @@ class PreviewCollectionView: UICollectionView {
 	}
 	
 	private func addViews() {
+		gestureZone.addGestureRecognizer(gesture)
+		self.addSubview(gestureZone)
 		self.addSubview(pageIndicator)
 		self.addSubview(backButton)
 	}
 	private func setupConstraints() {
+		gestureZone.snp.makeConstraints {
+			$0.top.left.right.width.equalTo(frameLayoutGuide)
+			$0.bottom.equalTo(backButton).offset(15)
+		}
 		backButton.snp.makeConstraints { (make) in
 			make.height.width.equalTo(50)
 			make.left.equalTo(frameLayoutGuide).offset(30)
@@ -80,16 +88,15 @@ class PreviewCell: UICollectionViewCell {
 	private var looper: AVPlayerLooper!
 	var url: URL? {
 		didSet {
+			downloadButton.isHidden = true
+			downloadIndidcator.isHidden = false
 			if let url = url {
-				downloadButton.isHidden = false
-				downloadIndidcator.isHidden = true
 				let item = AVPlayerItem(url: url)
 				looper = AVPlayerLooper(player: player, templateItem: item)
 				player.replaceCurrentItem(with: item)
 				playerLayer.player = self.player
-			} else {
-				downloadButton.isHidden = true
-				downloadIndidcator.isHidden = false
+				downloadButton.isHidden = false
+				downloadIndidcator.isHidden = true
 			}
 		}
 	}

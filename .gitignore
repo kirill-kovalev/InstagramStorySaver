@@ -52,7 +52,6 @@ xcuserdata
 .idea/
 ####
 # Other Xcode files
-profile
 *.hmap
 *.ipa
 ####
