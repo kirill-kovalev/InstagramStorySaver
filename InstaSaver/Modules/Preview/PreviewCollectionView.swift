@@ -55,9 +55,6 @@ class PreviewCollectionView: UICollectionView {
 	
 }
 
-
-
-
 class PreviewCell: UICollectionViewCell {
 	let container: UIImageView = {
 		let v = UIImageView(frame: .zero)
@@ -80,13 +77,15 @@ class PreviewCell: UICollectionViewCell {
 	}()
 	
 	private let playerLayer = AVPlayerLayer()
-	
+	private var looper: AVPlayerLooper!
 	var url: URL? {
 		didSet {
 			if let url = url {
 				downloadButton.isHidden = false
 				downloadIndidcator.isHidden = true
-				self.player = AVQueuePlayer(url: url)
+				let item = AVPlayerItem(url: url)
+				looper = AVPlayerLooper(player: player, templateItem: item)
+				player.replaceCurrentItem(with: item)
 				playerLayer.player = self.player
 			} else {
 				downloadButton.isHidden = true
@@ -94,7 +93,7 @@ class PreviewCell: UICollectionViewCell {
 			}
 		}
 	}
-	var player: AVPlayer? 
+	var player: AVQueuePlayer = AVQueuePlayer()
 	
 	required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 	override init(frame: CGRect) {
