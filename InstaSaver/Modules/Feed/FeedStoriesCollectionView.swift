@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class FeedStoriesCollectionView:AutoSizedCollectionView {
+class FeedStoriesCollectionView: AutoSizedCollectionView {
 	class Cell: UICollectionViewCell {
 		override init(frame: CGRect) {
 			super.init(frame: frame)
@@ -61,8 +61,12 @@ class FeedStoriesCollectionView:AutoSizedCollectionView {
 		self.rx.itemSelected.subscribe(onNext: {[weak self] path in
 			guard let self = self else {return}
 			let items = self.stories.value[path.item].content
-			let from = self.cellForItem(at: path)?.frame ?? .zero
-			self.previewDelegate?.displayPreview(items, from: from, focus: 0)
+			
+			let cell = self.cellForItem(at: path)
+			let cellFrame = cell?.bounds ?? .zero
+			let frame = cell?.convert(cellFrame, to: self.window)
+			
+			self.previewDelegate?.displayPreview(items, from: frame, focus: 0)
 		}).disposed(by: bag)
 	}
 	

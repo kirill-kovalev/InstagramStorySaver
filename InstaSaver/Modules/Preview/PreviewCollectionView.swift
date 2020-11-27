@@ -48,7 +48,7 @@ class PreviewCollectionView: UICollectionView {
 	private func setupConstraints() {
 		gestureZone.snp.makeConstraints {
 			$0.top.left.right.width.equalTo(frameLayoutGuide)
-			$0.bottom.equalTo(backButton).offset(15)
+			$0.bottom.equalTo(frameLayoutGuide).dividedBy(3)
 		}
 		backButton.snp.makeConstraints { (make) in
 			make.height.width.equalTo(50)
