@@ -36,10 +36,9 @@ class ISNetwork {
 			
 			if let cachedData = cache.object(forKey: remoteLink.lastPathComponent as NSString)?.data,
 			   let stringUrl = String(data: cachedData, encoding: .utf8),
-			   let localUrl = documentsUrl.appendingPathComponent(stringUrl) as? URL,
-			   print("caching",localUrl) == Void()
+			   let localUrl = documentsUrl.appendingPathComponent(stringUrl) as URL?,
+			   print("caching", localUrl) == Void()
 			{
-				print("caching found ",localUrl)
 				publisher.on(.next(localUrl))
 				publisher.on(.completed)
 			} else {
@@ -48,20 +47,16 @@ class ISNetwork {
 						publisher.on(.error(error))
 						return
 					}
-					print("caching temp",tempURL)
 					
 					if let tempURL = tempURL {
 						let destURL = documentsUrl.appendingPathComponent(remoteLink.lastPathComponent)
 						do {
-							print("caching dest",destURL)
-							
 							_ = try? FileManager.default.removeItem(at: destURL)
 							try FileManager.default.copyItem(at: tempURL, to: destURL)
 							
 							if let data = destURL.lastPathComponent.data(using: .utf8) {
 								cache.setObject(DataContainer(data), forKey: remoteLink.lastPathComponent as NSString)
 							}
-//							sleep(1)
 							publisher.on(.next(destURL))
 						} catch { publisher.on(.error(error)) }
 					}
@@ -71,7 +66,7 @@ class ISNetwork {
 
 		} catch { publisher.on(.error(error)) }
 		
-		return publisher.asObservable()
+		return publisher.asObservable().observeOn(MainScheduler.instance)
 
 	}
 	
