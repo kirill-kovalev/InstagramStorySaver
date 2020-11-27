@@ -67,8 +67,8 @@ extension TrayItem {
 			}
 		}
 
-		let thumb = self.cover?.toISMedia().content.first?.thumb ?? content?.first?.thumb ?? user?.avatar
-		
+		let croppedImageVersion = self.wrapper().dictionary()?["croppedImageVersion"]?.dictionary()?["url"]?.url()
+		let thumb = self.cover?.toISMedia().content.first?.thumb ?? content?.first?.thumb ?? croppedImageVersion ?? user?.avatar
 		return ISHilight(content: content ?? [],
 						 thumb: thumb,
 						 owner: user,

@@ -191,15 +191,18 @@ class ISapi {
 	
 	func getHilights(of user: ISUser)-> Observable<[ISHilight]> {
 		let publisher = PublishSubject<[ISHilight]>()
-		
-		guard let secret = secret else { return publisher.asObservable()}
+		guard let secret = secret else { return Observable<[ISHilight]>.just([])}
 		
 		Endpoint.Media.Stories.highlights(for: user.identity)
 			.unlocking(with: secret)
 			.task(by: .default, onComplete: {
 				switch $0 {
 					case .success(let data):
-						if let hilights = data.items?.map({$0.toISHilight()}) {
+						if let hilights = data.items?.map({ item -> ISHilight in
+							self.getMedia(for: item.identifier)
+							return item.toISHilight()
+						})
+						{
 							publisher.on(.next(hilights))
 						}
 					case .failure(let error): publisher.on(.error(error))
@@ -210,5 +213,29 @@ class ISapi {
 		
 		return publisher.asObservable()
 	}
-	
+
+	func getMedia(for id: String) {
+		print("GETMEDIA", "start", id)
+		let publisher = PublishSubject<[ISHilight]>()
+		guard let secret = secret else { return}// Observable<[ISHilight]>.just([])}
+		print("GETMEDIA", "secret")
+		Endpoint.Media.summary(for: id )
+			.unlocking(with: secret)
+			.task(by: .default, onComplete: {
+				switch $0 {
+					case .success(let data):
+						print("GETMEDIA", data)
+						if let content = data.media?.map({$0.toISMedia()}) {
+							print("GETMEDIA", content)
+						}
+						
+					case .failure(let error):
+						print("GETMEDIA", "error", error)
+						publisher.on(.error(error))
+				}
+				publisher.on(.completed)
+			})
+			.resume()
+			
+	}
 }
