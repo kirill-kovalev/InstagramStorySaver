@@ -22,7 +22,7 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 	override func viewWillAppear(_ animated: Bool) {
 		if let frame = presentFromFrame {
 			self.view.frame = frame
-			self.collection.backButton.layer.opacity = 0
+			self.collection.backButton.layer.opacity = 0.4
 			animate {
 				self.view.frame = UIScreen.main.bounds
 				self.collection.backButton.layer.opacity = 1
@@ -37,7 +37,7 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 			self.collection.backButton.layer.opacity = 1
 			animate{
 				self.view.frame = frame
-				self.collection.backButton.layer.opacity = 0
+				self.collection.backButton.layer.opacity = 0.4
 			}
 		} else {
 			super.viewWillDisappear(animated)
@@ -58,7 +58,6 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 					.concatenating(CGAffineTransform(scaleX: scale, y: scale))
 		}
 		
-		
 		guard sender.state == .ended  else {return}
 		
 		if distance > maxDistance || sender.velocity(in: view).x > 50 {
@@ -71,7 +70,7 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 		}
 	}
 	private func animate(animations: @escaping () -> Void ){
-		UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [], animations: animations, completion: nil)
+		UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 5, options: [.curveEaseInOut], animations: animations, completion: nil)
 	}
 
     override func viewDidLoad() {
