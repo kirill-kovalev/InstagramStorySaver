@@ -90,8 +90,10 @@ class ProfileViewController: ViewController<ProfileView>, PreviewDisplayDelegate
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 	// resizing collection header
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		let diff = 260 - pow(scrollView.contentOffset.y, 9/8)
-		self.rootView.headerHeightConstraint.constant = diff > 60 ? diff : 60
+		if scrollView.contentSize.height > UIScreen.main.bounds.height-60 {
+			let diff = 260 - pow(scrollView.contentOffset.y, 9/8)
+			self.rootView.headerHeightConstraint.constant = diff > 60 ? diff : 60
+		}
 	}
 	
 	//tableView

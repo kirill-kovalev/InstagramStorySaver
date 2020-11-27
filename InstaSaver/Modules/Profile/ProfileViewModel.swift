@@ -27,10 +27,10 @@ class ProfileViewModel {
 			.bind(to: self.stories)
 			.disposed(by: bag)
 		
-		input.user
-			.flatMap(ISAPI.getHilights)
-			.bind(to: self.hilights)
-			.disposed(by: bag)
+//		input.user
+//			.flatMap(ISAPI.getHilights)
+//			.bind(to: self.hilights)
+//			.disposed(by: bag)
 		
 		let avatarPresentOutput = input.userAvatarTap
 			.flatMap{input.user}
