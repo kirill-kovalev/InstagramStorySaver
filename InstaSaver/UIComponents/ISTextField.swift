@@ -13,6 +13,10 @@ class ISTextField: UIView {
 		tf.font = .searchfield
 		tf.backgroundColor = .clear
 		tf.textColor = Asset.Colors.black.color
+		tf.autocapitalizationType = .none
+		tf.autocorrectionType = .no
+		tf.keyboardAppearance = .default
+		tf.keyboardType = .webSearch
 		return tf
 	}()
 	let btn: UIButton = {
