@@ -56,6 +56,8 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 		animate {
 			self.view.transform = CGAffineTransform(translationX: translX, y: translY)
 					.concatenating(CGAffineTransform(scaleX: scale, y: scale))
+			self.view.layer.cornerRadius = 50
+			self.view.layer.masksToBounds = true
 		}
 		
 		guard sender.state == .ended  else {return}
@@ -65,6 +67,7 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
 		} else {
 			animate{
 				self.view.transform = .identity
+				self.view.layer.cornerRadius = 0
 			}
 			
 		}
@@ -86,10 +89,8 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
     }
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		(self.collection.cellForItem(at: IndexPath(row: 0, section: 0)) as? PreviewCell)?.player.play()
+		(self.collection.visibleCells.first as? PreviewCell)?.player.play()
 	}
-	
-	
 	
 	var content: [ISMedia.Content] = [] {
 		didSet {

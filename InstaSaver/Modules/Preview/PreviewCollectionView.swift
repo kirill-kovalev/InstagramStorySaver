@@ -35,6 +35,7 @@ class PreviewCollectionView: UICollectionView {
 		layout.minimumLineSpacing = 0
 		self.isPagingEnabled = true
 		self.showsHorizontalScrollIndicator = false
+		self.layer.masksToBounds = true
 		addViews()
 		setupConstraints()
 	}
