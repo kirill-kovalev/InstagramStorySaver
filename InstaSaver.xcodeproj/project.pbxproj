@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A7D3846FCC8B8D354045493 /* Pods_InstaSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543AD59F60B5F1042C654948 /* Pods_InstaSaver.framework */; };
+		5D0B762425718C410034ECBF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D0B762625718C410034ECBF /* Localizable.strings */; };
 		5D26FB68255B04A9008F070A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D26FB67255B04A9008F070A /* NetworkManager.swift */; };
 		5D443D42255822AB0075741E /* SwiftagramCrypto in Frameworks */ = {isa = PBXBuildFile; productRef = 5D443D41255822AB0075741E /* SwiftagramCrypto */; };
 		5D443D44255822AB0075741E /* Swiftagram in Frameworks */ = {isa = PBXBuildFile; productRef = 5D443D43255822AB0075741E /* Swiftagram */; };
@@ -80,6 +81,9 @@
 /* Begin PBXFileReference section */
 		1B646CBA815BA7B6E6F6038D /* Pods-InstaSaver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaSaver.release.xcconfig"; path = "Target Support Files/Pods-InstaSaver/Pods-InstaSaver.release.xcconfig"; sourceTree = "<group>"; };
 		543AD59F60B5F1042C654948 /* Pods_InstaSaver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaSaver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D0B762125718C230034ECBF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5D0B762525718C410034ECBF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5D0B762825718C450034ECBF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5D26FB67255B04A9008F070A /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		5D443D472558234F0075741E /* SFProDisplay-Ultralight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Ultralight.ttf"; sourceTree = "<group>"; };
 		5D443D482558234F0075741E /* SFProDisplay-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-RegularItalic.ttf"; sourceTree = "<group>"; };
@@ -142,7 +146,6 @@
 		5D5B73D1253DE21500B8FD3B /* InstaSaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaSaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D5B73D4253DE21500B8FD3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D5B73DD253DE21600B8FD3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5D5B73E0253DE21600B8FD3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D5B73E2253DE21600B8FD3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D5B73F1253DE32000B8FD3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5D5B73F4253DE34C00B8FD3B /* ContentViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewProtocol.swift; sourceTree = "<group>"; };
@@ -362,6 +365,7 @@
 		5DEF5C352548AC0A0021E979 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5D0B762625718C410034ECBF /* Localizable.strings */,
 				5DEF5C362548AC0A0021E979 /* Fonts */,
 			);
 			path = Resources;
@@ -439,7 +443,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				ru,
 			);
 			mainGroup = 5D5B73C8253DE21500B8FD3B;
 			packageReferences = (
@@ -475,6 +479,7 @@
 				5D443D742558234F0075741E /* SFProDisplay-UltralightItalic.ttf in Resources */,
 				5D443D6A2558234F0075741E /* SFProDisplay-ThinItalic.ttf in Resources */,
 				5D443D7A2558234F0075741E /* TTCommons-BoldItalic.ttf in Resources */,
+				5D0B762425718C410034ECBF /* Localizable.strings in Resources */,
 				5D443D702558234F0075741E /* SFProDisplay-HeavyItalic.ttf in Resources */,
 				5D443D692558234F0075741E /* SFProDisplay-Black.ttf in Resources */,
 				5D443D772558234F0075741E /* TTCommons-MediumItalic.ttf in Resources */,
@@ -599,10 +604,19 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		5D0B762625718C410034ECBF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5D0B762525718C410034ECBF /* ru */,
+				5D0B762825718C450034ECBF /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		5D5B73DF253DE21600B8FD3B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				5D5B73E0253DE21600B8FD3B /* Base */,
+				5D0B762125718C230034ECBF /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -614,6 +628,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -675,6 +690,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
