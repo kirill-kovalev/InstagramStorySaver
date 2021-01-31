@@ -76,6 +76,7 @@
 		5D5B73F2253DE32000B8FD3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B73F1253DE32000B8FD3B /* ViewController.swift */; };
 		5D5B73F5253DE34C00B8FD3B /* ContentViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B73F4253DE34C00B8FD3B /* ContentViewProtocol.swift */; };
 		5D5B73FA253DE3F400B8FD3B /* BasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B73F9253DE3F400B8FD3B /* BasicView.swift */; };
+		5DFEE31F25C6BBB0001AEDF7 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFEE31B25C6BB9B001AEDF7 /* ImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +151,7 @@
 		5D5B73F1253DE32000B8FD3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5D5B73F4253DE34C00B8FD3B /* ContentViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewProtocol.swift; sourceTree = "<group>"; };
 		5D5B73F9253DE3F400B8FD3B /* BasicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicView.swift; sourceTree = "<group>"; };
+		5DFEE31B25C6BB9B001AEDF7 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		B2198D549BE7941967A01739 /* Pods-InstaSaver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaSaver.debug.xcconfig"; path = "Target Support Files/Pods-InstaSaver/Pods-InstaSaver.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -324,6 +326,7 @@
 		5D5B73ED253DE2AE00B8FD3B /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				5DFEE31B25C6BB9B001AEDF7 /* ImageView.swift */,
 				5D443D8D2558245A0075741E /* FeedSearchView.swift */,
 				5D443D8C2558245A0075741E /* ISAvatarView.swift */,
 				5D443D8E2558245A0075741E /* ISSectionHeaderView.swift */,
@@ -587,6 +590,7 @@
 				5D443DA2255824F80075741E /* FeedItemCell.swift in Sources */,
 				5D443E03255946C70075741E /* PreviewCollectionView.swift in Sources */,
 				5D443DD6255827F20075741E /* ProfileView.swift in Sources */,
+				5DFEE31F25C6BBB0001AEDF7 /* ImageView.swift in Sources */,
 				5D443D962558245A0075741E /* ISStoryView.swift in Sources */,
 				5D443DF125585F7C0075741E /* LoginController.swift in Sources */,
 				5D443D84255823650075741E /* Fonts.swift in Sources */,
@@ -749,7 +753,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = FCXJCDV375;
 				INFOPLIST_FILE = InstaSaver/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -771,7 +775,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = FCXJCDV375;
 				INFOPLIST_FILE = InstaSaver/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

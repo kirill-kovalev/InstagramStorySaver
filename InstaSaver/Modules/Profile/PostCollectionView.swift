@@ -8,11 +8,11 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 class PostCell: UICollectionViewCell {
 	let bag = DisposeBag()
-	
-	let image = UIImageView(frame: .zero)
+	let image = ImageView(frame: .zero)
 	required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -30,6 +30,9 @@ class PostCell: UICollectionViewCell {
 
 class PostCollectionView: AutoSizedCollectionView, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 	let bag = DisposeBag()
+	
+	var cache: [IndexPath: UIImage] = [:]
+	
 	convenience init() {
 		let layout = UICollectionViewFlowLayout()
 		layout.minimumInteritemSpacing = 10
@@ -58,12 +61,7 @@ class PostCollectionView: AutoSizedCollectionView, UICollectionViewDelegateFlowL
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
 		if let url = self.posts.value[indexPath.item].content.first?.thumb ,
 		   let cell = cell as? PostCell {
-			ISNetwork
-				.data(url)
-				.compactMap(UIImage.init)
-				.observeOn(MainScheduler.instance)
-				.bind(to: cell.image.rx.image)
-				.disposed(by: bag)
+            cell.image.url = url
 		}
 		return cell
 	}

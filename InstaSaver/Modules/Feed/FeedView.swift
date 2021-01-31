@@ -31,7 +31,7 @@ class FeedView: BasicView {
 		table.backgroundColor = .clear
 		return table
 	}()
-		
+	var tableBotConstraint: NSLayoutConstraint!
 	override func addViews() {
 		self.backgroundColor = Asset.Colors.white.color
 		self.addSubview(headerTitle)
@@ -58,7 +58,9 @@ class FeedView: BasicView {
 		}
 		contentTable.snp.makeConstraints { (make) in
 			make.top.equalTo(searchView.snp.bottom).offset(20)
-			make.left.right.bottom.equalToSuperview()
+			make.left.right.equalToSuperview()
+			self.tableBotConstraint =
+				make.bottom.equalToSuperview().constraint.layoutConstraints.first
 		}
 	}
 }

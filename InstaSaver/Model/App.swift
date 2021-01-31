@@ -24,6 +24,7 @@ class ISapi {
 	private let bag = DisposeBag()
 	
 	private let storage = KeychainStorage<Secret>()
+	public var user: String {secret?.identifier ?? ""}
 	init() {
 		secretObservable.asObservable()
 			.map { $0 == nil }
@@ -104,7 +105,8 @@ class ISapi {
 		publisher.on(.next(cache))
 		
 		var allPosts = [ISMedia]()
-	
+		
+		
 		Endpoint.Media.Posts.owned(by: user.identity)
 			.unlocking(with: secret)
 			.task(maxLength: 3, by: .default, onComplete: { _ in
@@ -192,24 +194,24 @@ class ISapi {
 	func getHilights(of user: ISUser)-> Observable<[ISHilight]> {
 		let publisher = PublishSubject<[ISHilight]>()
 		guard let secret = secret else { return Observable<[ISHilight]>.just([])}
-		
-		Endpoint.Media.Stories.highlights(for: user.identity)
-			.unlocking(with: secret)
-			.task(by: .default, onComplete: {
-				switch $0 {
-					case .success(let data):
-						if let hilights = data.items?.map({ item -> ISHilight in
-							self.getMedia(for: item.identifier)
-							return item.toISHilight()
-						})
-						{
-							publisher.on(.next(hilights))
-						}
-					case .failure(let error): publisher.on(.error(error))
-				}
-				publisher.on(.completed)
-			})
-			.resume()
+		getMedia(for: "2396852811477631110_4616269663")
+//		Endpoint.Media.Stories.highlights(for: user.identity)
+//			.unlocking(with: secret)
+//			.task(by: .default, onComplete: {
+//				switch $0 {
+//					case .success(let data):
+//						if let hilights = data.items?.map({ item -> ISHilight in
+//							self.getMedia(for: item.identifier)
+//							return item.toISHilight()
+//						})
+//						{
+//							publisher.on(.next(hilights))
+//						}
+//					case .failure(let error): publisher.on(.error(error))
+//				}
+//				publisher.on(.completed)
+//			})
+//			.resume()
 		
 		return publisher.asObservable()
 	}
@@ -224,9 +226,9 @@ class ISapi {
 			.task(by: .default, onComplete: {
 				switch $0 {
 					case .success(let data):
-						print("GETMEDIA", data)
+//						print("GETMEDIA", data)
 						if let content = data.media?.map({$0.toISMedia()}) {
-							print("GETMEDIA", content)
+							print("GETMEDIA", content.first?.content.first?.link )
 						}
 						
 					case .failure(let error):

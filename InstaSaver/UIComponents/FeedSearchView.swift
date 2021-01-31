@@ -56,6 +56,9 @@ class FeedSearchView: UIView, ContentViewProtocol {
 			self.textField.textfield.resignFirstResponder()
 		}.disposed(by: bag)
 	}
+	override func resignFirstResponder() -> Bool {
+		textField.textfield.resignFirstResponder()
+	}
 	
 	public var RXbutton: Reactive<UIButton> {self.backButton.rx}
 	public var RXtextfield: Reactive<UITextField> {self.textField.textfield.rx}

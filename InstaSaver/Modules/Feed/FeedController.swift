@@ -62,7 +62,6 @@ class FeedVC: ViewController<FeedView>, PreviewDisplayDelegate {
 	}
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		
 	}
 	var input: FeedViewModel.Input {
 		FeedViewModel.Input(
@@ -107,5 +106,8 @@ class FeedVC: ViewController<FeedView>, PreviewDisplayDelegate {
 extension FeedVC: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
 		return !(tableView.numberOfSections != 1 && indexPath.section == 0)
+	}
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		self.rootView.searchView.resignFirstResponder()
 	}
 }

@@ -42,7 +42,7 @@ extension Media {
 		
 		return ISMedia(content: content,
 					   owner: user,
-					   date: self.expiringAt ?? self.takenAt ?? Date(),
+					   date: self.takenAt ?? Date(),
 					   description: self.caption?.text,
 					   identity: self.identifier ?? "")
 
@@ -62,7 +62,7 @@ extension TrayItem {
 		let content = self.items?.flatMap { media ->  [ISMedia.Content] in
 			media.content.ISContent().map {
 				var content = $0
-				content.date = media.expiringAt ?? media.takenAt
+				content.date = media.takenAt ??  media.expiringAt
 				return content
 			}
 		}

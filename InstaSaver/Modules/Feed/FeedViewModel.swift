@@ -39,14 +39,20 @@ class FeedViewModel {
 		}
 
 		input.editingBeganEvent.map { _ in false}.bind(to: shouldShowStories).disposed(by: bag)
-		input.editingEndEvent.map { _ in true}.bind(to: shouldShowStories).disposed(by: bag)
+        
+        Observable.combineLatest(
+            input.editingEndEvent.map { _ in true},
+            input.searchQuery.map {$0?.isEmpty ?? true}
+        )
+        .map { $0.0 && $0.1 }
+        .bind(to: shouldShowStories)
+        .disposed(by: bag)
 		
 		input.logoutButtonTap
 			.do(onNext: {_ in ISAPI.logout()})
 			.bind(to: self.logoutTrigger).disposed(by: bag)
 		
 		ISAPI.needsAuth
-			.do()
 			.compactMap {$0 ? Void() : nil}
 			.bind(to: logoutTrigger)
 			.disposed(by: bag)

@@ -54,12 +54,16 @@ class StoriesCollectionView: AutoSizedCollectionView, UICollectionViewDelegateFl
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
 		if let cell = cell as? Cell {
 			let item = stories.value.content[indexPath.item]
-			let timeInterval = item.date?.timeIntervalSinceNow ?? 0
+			let tisn = item.date?.timeIntervalSinceNow ?? 0 // timw interval since now
+            
+            let timeInterval = tisn > 0 ? 24*60*60 - tisn : -tisn
+            
 			if timeInterval < 3600 {
 				cell.storyView.timestampText.text = "\(Int(timeInterval)) minutes ago"
 			} else {
 				cell.storyView.timestampText.text = "\(Int(timeInterval/3600)) hours ago"
 			}
+//            cell.storyView.timestampText.text = "\(item.date!)"
 			let thumb = item.thumb
 			ISNetwork
 				.data(thumb)

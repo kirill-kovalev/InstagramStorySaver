@@ -10,5 +10,8 @@ target 'InstaSaver' do
 	pod 'RxCocoa'
 	pod 'RxDataSources'
 	pod 'SnapKit'
-	pod "RxRealm"
+	pod 'Kingfisher'
+	pod 'CRRefresh'
+#	pod "RxRealm"
+
 end
